@@ -23,6 +23,7 @@ int main(int argc, char** argv){
     
     int p=5;
     int q=5;
+    int z=(N*M)/(p*q);
     if(argc != 1){
         
     }
@@ -33,8 +34,8 @@ int main(int argc, char** argv){
             data_elements[i][j]=i*M+j;
         }
     
-    
-    PolymorphicRegister *pR = createPolymorphicRegister(p,q,3);
+     
+    PolymorphicRegister *pR = createPolymorphicRegister(p,q,z);
     pR->s=RECT_ROW;
     
     for(int i=0;i< N;i++)

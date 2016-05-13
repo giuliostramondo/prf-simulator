@@ -4,6 +4,11 @@ prf: prf.o main.c
 prf.o: prf.c
 	gcc -std=gnu99 -c prf.c -o prf.o
 
+documentation: doxy.conf
+	doxygen doxy.conf
+
+cleandoc:
+	-rm -rf doc/*
 clean:
 	-rm prf prf.o
 	-rm -rf *.dSYM

@@ -71,7 +71,7 @@ PolymorphicRegister *createPolymorphicRegister(int p, int q, int linRegSize){
     for(int i = 0; i<p;i++)
         for(int j = 0; j< q; j++){
             linearRegister* currentLinReg = &(lR[i][j]);
-            for(int k=0; k<linRegSize;k++){
+            for(int k=0; k<linRegSize-1;k++){
                 currentLinReg->next = (linearRegister*) malloc(sizeof(linearRegister));
                 currentLinReg = currentLinReg->next;
             }
