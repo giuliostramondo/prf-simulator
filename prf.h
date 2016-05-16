@@ -14,8 +14,10 @@
 #include <math.h>
 
 #define ERR -1 /*!< The default error value. */
-#define N 10   /*!< Size of one dimension of the original matrix. */
-#define M 10   /*!< Size of the other dimension of the original matrix. */
+//#define N 10   /*!< Size of one dimension of the original matrix. */
+//#define M 10   /*!< Size of the other dimension of the original matrix. */
+extern int N;
+extern int M;
 
 //!  Data structure used for representing a linearly accessible register.
 /*!  To represent the fact that the register is accessible linearly a list 
