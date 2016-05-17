@@ -100,9 +100,9 @@ $(document).ready(function(){initNavTree('index.html','');});
 <tr>
 <td>Rectangle only </td><td>Generates rectangular patches from the original matrix. </td></tr>
 <tr>
-<td>Rect&amp;Row </td><td>??? </td></tr>
+<td>Rect&amp;Row </td><td>Generates rectangular patches from the original matrix and swaps the rows. </td></tr>
 <tr>
-<td>Rect&amp;Col </td><td>??? </td></tr>
+<td>Rect&amp;Col </td><td>Generates rectangular patches from the original matrix and swaps the columns. </td></tr>
 <tr>
 <td>Row&amp;Col </td><td>??? </td></tr>
 <tr>
@@ -118,12 +118,18 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;make</div>
 </div><!-- fragment --><p>This should produce an executable called prf.</p>
 <h1>Usage </h1>
+<p>Usage: ./prf [Options]</p>
+<p>-N &lt;num&gt; Change the horizontal size of the input matrix (default 9)</p>
+<p>-M &lt;num&gt; Change the vertical size of the input matrix (default 9)</p>
+<p>-p &lt;num&gt; Change the horizontal size of the PRF (default 3)</p>
+<p>-q &lt;num&gt; Change the horizontal size of the PRF (default 3)</p>
+<p>-s &lt;num&gt; Change the schema used by the PRF (default 0 -&gt; RECTANGLE_ONLY) other schemes 1-&gt;RECT_ROW, 2-&gt;RECT_COL, 3-&gt;ROW_COL, 4-&gt;RECT_TRECT </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri May 13 2016 20:32:24 for Polymorphic Register Files Simulator by
+    <li class="footer">Generated on Mon May 16 2016 21:42:40 for Polymorphic Register Files Simulator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

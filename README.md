@@ -7,8 +7,8 @@ There are multiple ways in which the sub-matrices can be organized, each one bes
 Access Scheme  | Description
 -------------- | -------------
 Rectangle only | Generates rectangular patches from the original matrix. 
-Rect&Row       | ???
-Rect&Col       | ???
+Rect&Row       | Generates rectangular patches from the original matrix and swaps the rows.
+Rect&Col       | Generates rectangular patches from the original matrix and swaps the columns.
 Row&Col        | ???
 Rect&Trect     | ???
 
@@ -36,6 +36,21 @@ This should produce an executable called prf.
 
 Usage
 ======
+
+Usage: ./prf [Options]
+
+
+-N <num>	 Change the horizontal size of the input matrix (default 9)
+
+-M <num>	 Change the vertical size of the input matrix (default 9)
+
+-p <num>	 Change the horizontal size of the PRF (default 3)
+
+-q <num>	 Change the horizontal size of the PRF (default 3)
+
+-s <num>	 Change the schema used by the PRF (default 0 -> RECTANGLE_ONLY)
+	  other schemes 1->RECT_ROW, 2->RECT_COL, 3->ROW_COL, 4->RECT_TRECT
+
 
 
 ["On implementability of Polymorphic Register Files"]: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6322873&tag=1 "On implementability of Polymorphic Register Files"

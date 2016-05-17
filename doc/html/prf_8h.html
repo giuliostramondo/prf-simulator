@@ -93,7 +93,8 @@ $(document).ready(function(){initNavTree('prf_8h.html','');});
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">prf.h File Reference</div>  </div>
 </div><!--header-->
@@ -118,12 +119,6 @@ Macros</h2></td></tr>
 <tr class="memitem:a735563036dced0b7d6cc98f97ea4978b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prf_8h.html#a735563036dced0b7d6cc98f97ea4978b">ERR</a>&#160;&#160;&#160;-1</td></tr>
 <tr class="memdesc:a735563036dced0b7d6cc98f97ea4978b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default error value.  <a href="#a735563036dced0b7d6cc98f97ea4978b">More...</a><br /></td></tr>
 <tr class="separator:a735563036dced0b7d6cc98f97ea4978b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0240ac851181b84ac374872dc5434ee4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prf_8h.html#a0240ac851181b84ac374872dc5434ee4">N</a>&#160;&#160;&#160;10</td></tr>
-<tr class="memdesc:a0240ac851181b84ac374872dc5434ee4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of one dimension of the original matrix.  <a href="#a0240ac851181b84ac374872dc5434ee4">More...</a><br /></td></tr>
-<tr class="separator:a0240ac851181b84ac374872dc5434ee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52037c938e3c1b126c6277da5ca689d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prf_8h.html#a52037c938e3c1b126c6277da5ca689d0">M</a>&#160;&#160;&#160;10</td></tr>
-<tr class="memdesc:a52037c938e3c1b126c6277da5ca689d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the other dimension of the original matrix.  <a href="#a52037c938e3c1b126c6277da5ca689d0">More...</a><br /></td></tr>
-<tr class="separator:a52037c938e3c1b126c6277da5ca689d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -163,6 +158,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a02b62026cac9420197bcc35519962fe4"><td class="memItemLeft" align="right" valign="top">int **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="prf_8h.html#a02b62026cac9420197bcc35519962fe4">parallelReadFromPR</a> (<a class="el" href="struct_polymorphic_register.html">PolymorphicRegister</a> *pR, int z)</td></tr>
 <tr class="memdesc:a02b62026cac9420197bcc35519962fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads an array of integer at the given depth in the Polymorphic Register given as argument.  <a href="#a02b62026cac9420197bcc35519962fe4">More...</a><br /></td></tr>
 <tr class="separator:a02b62026cac9420197bcc35519962fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a7722c8ecbb62d99aee7ce68b1752f337"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7722c8ecbb62d99aee7ce68b1752f337"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>N</b></td></tr>
+<tr class="separator:a7722c8ecbb62d99aee7ce68b1752f337"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e78dbd5fd0fc01ba7b98dd15e27221e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e78dbd5fd0fc01ba7b98dd15e27221e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>M</b></td></tr>
+<tr class="separator:a5e78dbd5fd0fc01ba7b98dd15e27221e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a735563036dced0b7d6cc98f97ea4978b"></a>
@@ -176,34 +180,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The default error value. </p>
-
-</div>
-</div>
-<a class="anchor" id="a52037c938e3c1b126c6277da5ca689d0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define M&#160;&#160;&#160;10</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Size of the other dimension of the original matrix. </p>
-
-</div>
-</div>
-<a class="anchor" id="a0240ac851181b84ac374872dc5434ee4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define N&#160;&#160;&#160;10</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Size of one dimension of the original matrix. </p>
 
 </div>
 </div>
@@ -566,7 +542,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="prf_8h.html">prf.h</a></li>
-    <li class="footer">Generated on Fri May 13 2016 20:32:24 for Polymorphic Register Files Simulator by
+    <li class="footer">Generated on Mon May 16 2016 21:42:40 for Polymorphic Register Files Simulator by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>
