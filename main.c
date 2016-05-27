@@ -20,9 +20,12 @@ void printMatrix(int **inputMatrix, int dim1, int dim2){
 	for(int i=0;i<dim1;i++){
 		for(int j=0;j<dim2;j++){
 			if(inputMatrix[i][j]<10)
+				printf("  %d ",inputMatrix[i][j]);
+			else if(inputMatrix[i][j]<100)
 				printf(" %d ",inputMatrix[i][j]);
 			else
 				printf("%d ",inputMatrix[i][j]);
+
 			}
 		printf("\n");
 	}
@@ -45,14 +48,18 @@ void printMatrixHighlight(int **inputMatrix,int dim1,int dim2, int **highlightMa
 				}
 			if(highlight){
 				if(inputMatrix[i][j]<10)
+					printf("  \033[1;31m%d\033[0m ",inputMatrix[i][j]);
+				else if(inputMatrix[i][j]<100)
 					printf(" \033[1;31m%d\033[0m ",inputMatrix[i][j]);
-				else
+				else 
 					printf("\033[1;31m%d\033[0m ",inputMatrix[i][j]);
 				}	
 			else{
 				if(inputMatrix[i][j]<10)
+					printf("  %d ",inputMatrix[i][j]);
+				else if(inputMatrix[i][j]<100) 
 					printf(" %d ",inputMatrix[i][j]);
-				else
+				else 
 					printf("%d ",inputMatrix[i][j]);
 				}	
 		}	
