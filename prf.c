@@ -58,8 +58,72 @@ int m_h(int index_i, int index_j, scheme s, int p, int q){
     return ERR;
 }
 
+
 int A_standard(int index_i, int index_j, int p, int q){
     return (int)floor(index_i/p)*(M/q) + (int)floor(index_j/q);
+}
+
+int A_custom(PolymorphicRegister *pR,int index_i, int index_j, int alpha, int beta, acc_type type){
+	int c_i;
+	int c_j;
+	int k;
+	int l;
+
+	k = m_v(index_i+alpha,index_j+beta,pR->s,pR->p,pR->q);
+	l = m_h(index_i+alpha,index_j+beta,pR->s,pR->p,pR->q);
+	int p = pR->p;
+	int q = pR->q;
+	
+	switch(pR->s){
+		case RECTANGLE_ONLY:
+			//c_i = (int)floor(((index_i%pR->p)+alpha)/pR->p);
+			//c_j = (int)floor(((index_j%pR->q)+beta)/pR->q);
+			// Above is equivalent to below
+			if(k<(index_i%p))
+				c_i = 1;
+			else 
+				c_i = 0;
+			if(l<(index_j%q))
+				c_j = 1;
+			else
+				c_j = 0;
+		break;
+		case RECT_ROW:
+			switch(type){
+				case RECTANGLE:
+					if(l<(index_j%q))
+						c_j = 1;
+					else
+						c_j = 0;
+					c_i = ((index_i%p)+(k-(index_j/q)%p-c_j-(index_i%p))%p)/p; 
+				break;
+				case ROW:
+					c_i = 0;
+					int c_j1;
+					if(l<(index_j%q))
+						c_j1 = 1;
+					else
+						c_j1 = 0;
+					c_j = c_j1 + (k-(index_i%p)-((index_j/q)%p)-c_j1)%p;
+				break;
+				case MAIN_DIAG:
+					int c_j1;
+					int c_j2;
+					if(l<(index_j%q))
+						c_j1 = 1;
+					else
+						c_j1 = 0;
+					int delta_md;
+					delta_md = k-(index_i%p)-((l-(index_j%q))%q)%p - c_j1 - (index_j/q)%p;
+					//c_j2 = ((delta_md%p) w pag 67 of the thesis is undefined.
+				break;
+			}
+		break;
+		default:
+			c_i=0;
+			c_j=0;
+	}
+	return ((int)floor(index_i/pR->p)+c_i)*(M/pR->q) + (int)floor(index_j/pR->q) + c_j;
 }
 
 PolymorphicRegister *createPolymorphicRegister(int p, int q, int linRegSize){
@@ -136,5 +200,48 @@ int** parallelReadFromPR(PolymorphicRegister *pR, int z){
         }
     }
     return res;
+}
+
+
+int** parallelReadRectangleOnly(PolymorphicRegister *pR, int index_i, int index_j){
+    int **res = (int **)malloc(sizeof(int*)* pR->p);
+    for(int i = 0; i< pR->p;i++){
+        res[i] = (int*) malloc(sizeof(int)*pR->q);
+    }
+
+    for(int i=0; i<pR->p; i++){
+	for(int j=0;j<pR->q; j++){
+		int inModuleAddress = A_custom(pR,index_i,index_j, i, j,RECTANGLE);
+		int reg_i = m_v(index_i+i,index_j+j,pR->s,pR->p,pR->q);
+    		int reg_j = m_h(index_i+i,index_j+j,pR->s,pR->p,pR->q);
+		linearRegister *currentLinReg = &(pR->data[reg_i][reg_j]);
+		for(int k = 0;k<inModuleAddress;k++)
+			currentLinReg = currentLinReg->next;
+		res[i][j]=currentLinReg -> data;
+		}
+	}
+	
+	return res;
+}
+
+int** parallelReadRow(PolymorphicRegister *pR, int index_i, int index_j){
+    int **res = (int **)malloc(sizeof(int*)* pR->p);
+    for(int i = 0; i< pR->p;i++){
+        res[i] = (int*) malloc(sizeof(int)*pR->q);
+    }
+
+    for(int i=0; i<pR->p; i++){
+	for(int j=0;j<pR->q; j++){
+		int inModuleAddress = A_custom(pR,index_i,index_j, i, j,ROW);
+		int reg_i = m_v(index_i+i,index_j+j,pR->s,pR->p,pR->q);
+    		int reg_j = m_h(index_i+i,index_j+j,pR->s,pR->p,pR->q);
+		linearRegister *currentLinReg = &(pR->data[reg_i][reg_j]);
+		for(int k = 0;k<inModuleAddress;k++)
+			currentLinReg = currentLinReg->next;
+		res[i][j]=currentLinReg -> data;
+		}
+	}
+	
+	return res;
 }
 

@@ -1,4 +1,4 @@
-//  
+	//  
 //!  \file prf.h
 //  PRF_Sim
 //
@@ -39,6 +39,16 @@ typedef enum  {
     RECT_TRECT,
     UNDEFINED
 } scheme;
+
+//!Enum containing all the available access types
+typedef enum {
+	RECTANGLE, /*!< Access p x q rectangle */
+	ROW,       /*!< Access 1 x p*q rows */
+	COLUMN,    /*!< Access p*q x 1 columns */
+	MAIN_DIAG, /*!< Access elements in the main diagonal */
+	SECONDARY_DIAG, /*!< Access elements in the secondary diagonal */
+	DEFAULT
+} acc_type;
 
 //!  Data structure used for representing a Polymorphic Register.
 typedef struct polReg {
@@ -119,5 +129,6 @@ int readFromPR(PolymorphicRegister *pR, int index_i, int index_j);
 */
 int** parallelReadFromPR(PolymorphicRegister *pR, int z);
 
-
+//Trying to implement the Inverse mapping function
+int** parallelReadRectangleOnly(PolymorphicRegister *pR, int index_i, int index_j);
 #endif

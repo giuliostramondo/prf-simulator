@@ -176,8 +176,15 @@ int main(int argc, char** argv){
 	printf("\n");
 	printMatrix(PrLayer,pR->p,pR->q);
 	} 
+	printf("\n");
 
+	if(pR->s == 0 ){
+	printf("Performing custom ReO access B(3,2)\n");
+	PrLayer=parallelReadRectangleOnly(pR, 3, 2);
+	printMatrixHighlight(data_elements1,N,M,PrLayer, pR->p, pR->q);
+	printf("\n");
+	printMatrix(PrLayer,pR->p,pR->q);
+	}
 
-  
     return 0;
 }
