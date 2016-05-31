@@ -80,10 +80,10 @@ void printUsage(char *programName){
 }
 int main(int argc, char** argv){
     //Setting the default values for N M q and p
-    int p=3;
-    int q=3;
-    N=9;
-    M=9;
+    int p=2;
+    int q=4;
+    N=14;
+    M=8;
 
     scheme s = RECTANGLE_ONLY;
 
