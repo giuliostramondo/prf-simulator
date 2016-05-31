@@ -1,4 +1,4 @@
-	//  
+//  
 //!  \file prf.h
 //  PRF_Sim
 //
@@ -131,4 +131,7 @@ int** parallelReadFromPR(PolymorphicRegister *pR, int z);
 
 //Trying to implement the Inverse mapping function
 int** parallelReadRectangleOnly(PolymorphicRegister *pR, int index_i, int index_j);
+
+int** parallelReadRow(PolymorphicRegister *pR, int index_i, int index_j);
+
 #endif

@@ -66,6 +66,7 @@ int A_standard(int index_i, int index_j, int p, int q){
 int A_custom(PolymorphicRegister *pR,int index_i, int index_j, int alpha, int beta, acc_type type){
 	int c_i;
 	int c_j;
+	int c_j1, c_j2;
 	int k;
 	int l;
 
@@ -99,7 +100,6 @@ int A_custom(PolymorphicRegister *pR,int index_i, int index_j, int alpha, int be
 				break;
 				case ROW:
 					c_i = 0;
-					int c_j1;
 					if(l<(index_j%q))
 						c_j1 = 1;
 					else
@@ -107,8 +107,6 @@ int A_custom(PolymorphicRegister *pR,int index_i, int index_j, int alpha, int be
 					c_j = c_j1 + (k-(index_i%p)-((index_j/q)%p)-c_j1)%p;
 				break;
 				case MAIN_DIAG:
-					int c_j1;
-					int c_j2;
 					if(l<(index_j%q))
 						c_j1 = 1;
 					else
@@ -123,7 +121,8 @@ int A_custom(PolymorphicRegister *pR,int index_i, int index_j, int alpha, int be
 			c_i=0;
 			c_j=0;
 	}
-	return ((int)floor(index_i/pR->p)+c_i)*(M/pR->q) + (int)floor(index_j/pR->q) + c_j;
+	int res = ((int)floor(index_i/pR->p)+c_i)*(M/pR->q) + (int)floor(index_j/pR->q) + c_j;
+	return res;
 }
 
 PolymorphicRegister *createPolymorphicRegister(int p, int q, int linRegSize){

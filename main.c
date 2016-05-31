@@ -186,5 +186,43 @@ int main(int argc, char** argv){
 	printMatrix(PrLayer,pR->p,pR->q);
 	}
 
+	if(pR->s == 1){
+	printf("Performing custiom ReRo access ROW B(0,0)\n");
+	PrLayer= parallelReadRow(pR, 0, 0);
+	printMatrixHighlight(data_elements1,N,M,PrLayer, pR->p, pR->q);
+	printf("\n");
+	printMatrix(PrLayer,pR->p,pR->q);
+
+	printf("Performing custiom ReRo access ROW B(1,0)\n");
+	PrLayer= parallelReadRow(pR, 1, 0);
+	printMatrixHighlight(data_elements1,N,M,PrLayer, pR->p, pR->q);
+	printf("\n");
+	printMatrix(PrLayer,pR->p,pR->q);
+
+	printf("Performing custiom ReRo access ROW B(2,0)\n");
+	PrLayer= parallelReadRow(pR, 2, 0);
+	printMatrixHighlight(data_elements1,N,M,PrLayer, pR->p, pR->q);
+	printf("\n");
+	printMatrix(PrLayer,pR->p,pR->q);
+
+	printf("Performing custiom ReRo access ROW B(3,0)\n");
+	PrLayer= parallelReadRow(pR, 3, 0);
+	printMatrixHighlight(data_elements1,N,M,PrLayer, pR->p, pR->q);
+	printf("\n");
+	printMatrix(PrLayer,pR->p,pR->q);
+
+	printf("Performing custiom ReRo access RECTANGLE B(3,2)\n");
+	PrLayer=parallelReadRectangleOnly(pR, 3, 2);
+	printMatrixHighlight(data_elements1,N,M,PrLayer, pR->p, pR->q);
+	printf("\n");
+	printMatrix(PrLayer,pR->p,pR->q);
+
+	printf("Performing custiom ReRo access RECTANGLE B(4,4)\n");
+	PrLayer=parallelReadRectangleOnly(pR, 4, 4);
+	printMatrixHighlight(data_elements1,N,M,PrLayer, pR->p, pR->q);
+	printf("\n");
+	printMatrix(PrLayer,pR->p,pR->q);
+	}
+
     return 0;
 }
