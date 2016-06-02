@@ -28,6 +28,12 @@ typedef struct list {
     struct list* next; /*!< Pointer to the next node. */
 } linearRegister;
 
+
+typedef struct address2d {
+	int i;
+	int j;
+}Address2d;
+
 //! Enum containing all the available mapping scheme
 /*! suitable for writing and reading data from a Polymorphic Register.
 */
@@ -134,4 +140,7 @@ int** parallelReadRectangleOnly(PolymorphicRegister *pR, int index_i, int index_
 
 int** parallelReadRow(PolymorphicRegister *pR, int index_i, int index_j);
 
+int** readBlock(PolymorphicRegister *pR, int index_i, int index_j, acc_type type);
+
+int** computeConflicts(PolymorphicRegister *pR, int index_i, int index_j, acc_type type);
 #endif

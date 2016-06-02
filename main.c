@@ -31,6 +31,20 @@ void printMatrix(int **inputMatrix, int dim1, int dim2){
 	}
 }
 
+void printConflicts(int **inputMatrix, int dim1, int dim2){
+
+	for(int i=0;i<dim1;i++){
+		for(int j=0;j<dim2;j++){
+			if(inputMatrix[i][j]==1)
+				printf("%d ",inputMatrix[i][j]);
+			else
+				printf("\033[1;31m%d\033[0m ",inputMatrix[i][j]);
+
+			}
+		printf("\n");
+	}
+}
+
 void printMatrixHighlight(int **inputMatrix,int dim1,int dim2, int **highlightMatrix, int dimH1, int dimH2){
 	int highlight;
 	for(int i=0;i<dim1;i++){
@@ -223,6 +237,24 @@ int main(int argc, char** argv){
 	printf("\n");
 	printMatrix(PrLayer,pR->p,pR->q);
 	}
+
+	printf("Performing standard access RECTANGLE B(4,4)\n");
+	PrLayer = readBlock(pR, 4, 4, RECTANGLE);
+	printMatrixHighlight(data_elements1,N,M,PrLayer, pR->p, pR->q);
+	printf("\n");
+	printMatrix(PrLayer,pR->p,pR->q);
+	printf("Conflicts matrix\n");
+	PrLayer = computeConflicts(pR, 4, 4, RECTANGLE);
+	printConflicts(PrLayer, pR->p, pR->q);	
+
+	printf("Performing standard access ROW B(3,0)\n");
+	PrLayer = readBlock(pR, 3, 0, ROW);
+	printMatrixHighlight(data_elements1,N,M,PrLayer, pR->p, pR->q);
+	printf("\n");
+	printMatrix(PrLayer,pR->p,pR->q);
+	printf("Conflicts matrix\n");
+	PrLayer = computeConflicts(pR, 4, 4, ROW);
+	printConflicts(PrLayer, pR->p, pR->q);	
 
     return 0;
 }

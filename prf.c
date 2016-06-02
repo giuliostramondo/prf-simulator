@@ -58,6 +58,33 @@ int m_h(int index_i, int index_j, scheme s, int p, int q){
     return ERR;
 }
 
+Address2d* AGU(int index_i, int index_j,int p, int q, acc_type type){
+	Address2d* res = (Address2d*) malloc(sizeof(p*q));
+	for(int i=0; i<p;i++)
+		for(int j=0; j<q; j++){
+			switch(type){
+				case RECTANGLE:
+					res[i*q+j].i= index_i+i;
+					res[i*q+j].j= index_j+j;
+
+				break;
+				case ROW:
+					res[i*q+j].i=index_i;
+					res[i*q+j].j=index_j + (i*q+j);
+				break;
+				case MAIN_DIAG:
+					res[i*q+j].i = index_i + (i*q+j);
+					res[i*q+j].j = index_j + (i*q+j);	
+				break;
+				case SECONDARY_DIAG:
+					res[i*q+j].i = index_i + (i*q+j);
+					res[i*q+j].j = index_j - (i*q+j);
+				break;
+				
+			}
+	}
+	return res;
+} 
 
 int A_standard(int index_i, int index_j, int p, int q){
     return (int)floor(index_i/p)*(M/q) + (int)floor(index_j/q);
@@ -210,18 +237,28 @@ int** parallelReadRectangleOnly(PolymorphicRegister *pR, int index_i, int index_
 
     for(int i=0; i<pR->p; i++){
 	for(int j=0;j<pR->q; j++){
+		res[i][j]=-1;
+		}
+	}
+
+    for(int i=0; i<pR->p; i++){
+	for(int j=0;j<pR->q; j++){
 		int inModuleAddress = A_custom(pR,index_i,index_j, i, j,RECTANGLE);
+		inModuleAddress =  A_standard(index_i+i, index_j+j, pR->p, pR->q);
+ 
 		int reg_i = m_v(index_i+i,index_j+j,pR->s,pR->p,pR->q);
     		int reg_j = m_h(index_i+i,index_j+j,pR->s,pR->p,pR->q);
 		linearRegister *currentLinReg = &(pR->data[reg_i][reg_j]);
 		for(int k = 0;k<inModuleAddress;k++)
 			currentLinReg = currentLinReg->next;
-		res[i][j]=currentLinReg -> data;
+		res[reg_i][reg_j]=currentLinReg -> data;
 		}
 	}
 	
 	return res;
 }
+
+
 
 int** parallelReadRow(PolymorphicRegister *pR, int index_i, int index_j){
     int **res = (int **)malloc(sizeof(int*)* pR->p);
@@ -231,12 +268,60 @@ int** parallelReadRow(PolymorphicRegister *pR, int index_i, int index_j){
 
     for(int i=0; i<pR->p; i++){
 	for(int j=0;j<pR->q; j++){
+		res[i][j]=-1;
+		}
+	}
+
+    for(int i=0; i<pR->p; i++){
+	for(int j=0;j<pR->q; j++){
 		int inModuleAddress = A_custom(pR,index_i,index_j, i, j,ROW);
+		inModuleAddress =  A_standard(index_i, index_j+(i*pR->q)+j, pR->p, pR->q);
+
 		int reg_i = m_v(index_i+i,index_j+j,pR->s,pR->p,pR->q);
     		int reg_j = m_h(index_i+i,index_j+j,pR->s,pR->p,pR->q);
 		linearRegister *currentLinReg = &(pR->data[reg_i][reg_j]);
 		for(int k = 0;k<inModuleAddress;k++)
 			currentLinReg = currentLinReg->next;
+		res[reg_i][reg_j]=currentLinReg -> data;
+		}
+	}
+	
+	return res;
+}
+
+int** readBlock(PolymorphicRegister *pR, int index_i, int index_j, acc_type type){
+    int **res = (int **)malloc(sizeof(int*)* pR->p);
+    for(int i = 0; i< pR->p;i++){
+        res[i] = (int*) malloc(sizeof(int)*pR->q);
+    }
+
+    for(int i=0; i<pR->p; i++){
+	for(int j=0;j<pR->q; j++){
+		res[i][j]=-1;
+		}
+	}
+
+    Address2d * generated_accesses = AGU(index_i,index_j,pR->p,pR->q,type);
+    //the address have to be reordered
+    //the reordering should allow to perform the accesses following the placement
+    //of the phisical memory block
+    for(int i=0; i<pR->p; i++){
+	for(int j=0;j<pR->q; j++){
+		Address2d current_access = generated_accesses[i*pR->q+j];
+		int inModuleAddress;
+		inModuleAddress =  A_standard(current_access.i, current_access.j, pR->p, pR->q);
+
+		//This part represents the full crossbar switch in hw
+		//Redirecting each access to the right memory cell
+		int mm_i = m_v(current_access.i,current_access.j,pR->s,pR->p,pR->q);
+    		int mm_j = m_h(current_access.i,current_access.j,pR->s,pR->p,pR->q);
+		linearRegister *currentLinReg = &(pR->data[mm_i][mm_j]);
+
+		for(int k = 0;k<inModuleAddress;k++)
+			currentLinReg = currentLinReg->next;
+
+		//The value is placed again in the original position within the pxq
+		//parallel access. This is implemented again in hw with a full crossbar
 		res[i][j]=currentLinReg -> data;
 		}
 	}
@@ -244,3 +329,33 @@ int** parallelReadRow(PolymorphicRegister *pR, int index_i, int index_j){
 	return res;
 }
 
+
+//This function is going to store the number of times each memory module is accessed
+//in order to perform the requested address, given the current memory scheme.
+//In the case in which there are no conflicts each memory block should have only one access.
+//The number of read operation required to obtain the required data given the scheme and the
+//access shape will be equal to the maximum number of accesses done.
+int** computeConflicts(PolymorphicRegister *pR, int index_i, int index_j, acc_type type){
+    int **res = (int **)malloc(sizeof(int*)* pR->p);
+    for(int i = 0; i< pR->p;i++){
+        res[i] = (int*) malloc(sizeof(int)*pR->q);
+    }
+
+    for(int i=0; i<pR->p; i++){
+	for(int j=0;j<pR->q; j++){
+		res[i][j]=0;
+		}
+	}
+
+    Address2d * generated_accesses = AGU(index_i,index_j,pR->p,pR->q,type);
+    for(int i=0; i<pR->p; i++){
+	for(int j=0;j<pR->q; j++){
+		Address2d current_access = generated_accesses[i*pR->q+j];
+		int mm_i = m_v(current_access.i,current_access.j,pR->s,pR->p,pR->q);
+    		int mm_j = m_h(current_access.i,current_access.j,pR->s,pR->p,pR->q);
+		res[mm_i][mm_j]++;
+		}
+	}
+	
+	return res;
+}
