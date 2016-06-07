@@ -37,17 +37,12 @@ int main(int argc, char** argv){
 	return 1;
 	}
     int z=(N*M)/(p*q);
-    int data_elements[N][M];
 	
 	int ** data_elements1 = (int**)malloc(sizeof(int*)*N);
 	for(int i=0;i<N;i++){
 		data_elements1[i]=(int*)malloc(sizeof(int)*M);
 	}
 
-    for(int i=0;i< N;i++)
-        for(int j=0;j<M;j++){
-            data_elements[i][j]=i*M+j;
-        }
 
     for(int i=0;i< N;i++)
         for(int j=0;j<M;j++){
@@ -63,7 +58,7 @@ int main(int argc, char** argv){
     
     for(int i=0;i< N;i++)
         for(int j=0;j<M;j++){
-            writeToPR(pR,data_elements[i][j],i,j);
+            writeToPR(pR,data_elements1[i][j],i,j);
         }
     
 
