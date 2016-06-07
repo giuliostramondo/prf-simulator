@@ -1,15 +1,25 @@
-prf: prf.o main.c
-	gcc -std=gnu99 -g prf.o main.c -o prf
+SRCDIR=src
+OBJDIR=obj
+BINDIR=bin
 
-prf.o: prf.c
-	gcc -std=gnu99 -g -c prf.c -o prf.o
+SOURCES = $(wildcard $(SRCDIR)/*.c)
+OBJ = $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
+$(BINDIR)/prf: $(OBJ)
+	gcc -std=gnu99 \
+	$(OBJ) \
+	-o $(BINDIR)/prf
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	gcc \
+	-g -std=gnu99 -c $< -o $@
+	
 documentation: doxy.conf
 	doxygen doxy.conf
 
 cleandoc:
 	-rm -rf doc/*
 clean:
-	-rm prf prf.o
+	-rm $(BINDIR)/prf $(OBJDIR)/*.o
 	-rm -rf *.dSYM
 
