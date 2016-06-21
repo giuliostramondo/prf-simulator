@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>    
 #include <stdlib.h>
+#include <string.h>
 #include <malloc/malloc.h>
 #include "prf.h"
 #include "utility.h"
@@ -9,6 +10,8 @@
 int line_num;
 int N;
 int M;
+int z;
+//Here due to parsing error handling, figure out how to take it away
 int **data_elements1;
 PolymorphicRegister *pR;
 Options opt;
@@ -33,6 +36,7 @@ if(DEBUG){
 	char *svalue;
 	int intval;
 	acc_type access_type;
+	scheme mapping_scheme;
 }
 
 //------------------------------
@@ -44,6 +48,7 @@ if(DEBUG){
 %token <svalue> IDENTIFIER
 %token <intval> NUMBER
 %token <access_type> ACC_TYPE
+%token <mapping_scheme> SCHEME
 %token LSQUARE
 %token RSQUARE
 %token SEMI
@@ -79,29 +84,35 @@ instructions : instructions instruction |
 
 instruction : access_single |
 	     access_block |
-		  
+	     set_instruction |
+	     error { 
+		printf("> ");
+			}|
+	     show_instruction| 
 	     access_all   /*|
 	     access_multiple   |
-	     set_instruction |
-	     check_instruction |
-	     show_instruction */
+	     check_instruction */
 		;
 	     
 	     
 access_single : A LSQUARE NUMBER RSQUARE LSQUARE NUMBER RSQUARE SEMI{
-		printf("Parsed access_single\n");
+		printDebug("Parsed access_single\n");
 		int res = readFromPR(pR,$3,$6);
 		printf("A[%d][%d]=%d\n",$3,$6,res);
+		printf("> ");
+
 		};
 
 access_block : A LSQUARE NUMBER RSQUARE LSQUARE NUMBER RSQUARE COMMA ACC_TYPE SEMI{
-		printf("Parsed access_block\n");
+		printDebug("Parsed access_block\n");
 		printf("A[%d][%d],%d\n",$3,$6,$9);
 	 	performBlockRead($3,$6,$9,data_elements1,pR);
+		printf("> ");
+
 	};
 
 access_all : A ALL SEMI{
-		printf("Parsed access_all\n"); 
+		printDebug("Parsed access_all\n"); 
 			 
 	 	performBlockRead(0,0,RECTANGLE,data_elements1,pR);
 	 	performBlockRead(0,0,ROW,data_elements1,pR);
@@ -109,8 +120,48 @@ access_all : A ALL SEMI{
 	 	performBlockRead(0,0,MAIN_DIAG,data_elements1,pR);
 	 	performBlockRead(0,0,TRANSP_RECTANGLE,data_elements1,pR);
 	 	performBlockRead(0,M-1,SECONDARY_DIAG,data_elements1,pR);
+	        printf("> ");
 	};
 
+set_instruction: SET IDENTIFIER NUMBER SEMI{
+		printDebug("parsed set_instruction\n");
+		if(strcmp($2,"s")==0){
+			//ADD FREE old pR 
+			pR->s = $3;
+			for(int i=0;i< N;i++)
+        			for(int j=0;j<M;j++){
+            				writeToPR(pR,data_elements1[i][j],i,j);
+        			}
+			printf("s=%d\n",pR->s);	
+		}	
+		printf("> ");
+	};
+
+show_instruction: SHOW IDENTIFIER SEMI{
+			printDebug("parsed show_instruction\n");
+			if(strcmp($2,"s")==0){
+				printf("s=%d\n",pR->s);
+				}
+			
+			if(strcmp($2,"matrix")==0){
+				printMatrix(data_elements1,N,M);	
+				}
+			if(strcmp($2,"PRF")==0){
+			  int **PrLayer;
+  			  for(int i=0;i<z;i++){
+					printf("\n");
+					printf("Layer %d\n",i);
+					PrLayer=parallelReadFromPR(pR,i);
+					printMatrixHighlight(data_elements1,N,M,PrLayer, pR->p, pR->q);
+					printf("\n");
+					printMatrix(PrLayer,pR->p,pR->q);
+				}	 
+			   printf("\n");
+			   
+				}
+			printf("> ");
+
+};
 
 %%
 
@@ -138,7 +189,7 @@ int main (int argc, char* argv[]){
 	printf("M%%q!=0");
 	return 1;
 	}
-    int z=(N*M)/(p*q);
+    z=(N*M)/(p*q);
 
     data_elements1 = (int**)malloc(sizeof(int*)*N);
 	for(int i=0;i<N;i++){
@@ -159,5 +210,6 @@ int main (int argc, char* argv[]){
         }
 
     printDebug("start parsing\n");
+    printf("> ");
 	return yyparse();
 }

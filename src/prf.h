@@ -16,8 +16,9 @@
 #define ERR -1 /*!< The default error value. */
 //#define N 10   /*!< Size of one dimension of the original matrix. */
 //#define M 10   /*!< Size of the other dimension of the original matrix. */
-extern int N;
-extern int M;
+extern int N;/*!< Size of the horizontal dimension of the original matrix. */
+extern int M;/*!< Size of the vertical dimension of the original matrix. */
+
 
 //!  Data structure used for representing a linearly accessible register.
 /*!  To represent the fact that the register is accessible linearly a list 
@@ -28,21 +29,25 @@ typedef struct list {
     struct list* next; /*!< Pointer to the next node. */
 } linearRegister;
 
-
+//!  Data structure used for representing a 2D address. 
 typedef struct address2d {
 	int i;
 	int j;
 }Address2d;
 
 //! Enum containing all the available mapping scheme
-/*! suitable for writing and reading data from a Polymorphic Register.
+/*! suitable for mapping input matrix logical addresses into physical Polymorphic Register addresses;
 */
 typedef enum  {
-    RECTANGLE_ONLY,
-    RECT_ROW,
-    RECT_COL,
-    ROW_COL,
-    RECT_TRECT,
+    RECTANGLE_ONLY,/*!< This access scheme allows only conflict free rectangular block accesses */
+    RECT_ROW,/*!< This access scheme allows only conflict free rectangular, row, main diagonal and secondary diagonal block accesses */
+
+    RECT_COL,/*!< This access scheme allows only conflict free rectangular, column, main diagonal and secondary diagonal block accesses */
+
+    ROW_COL,/*!< This access scheme allows only conflict free rectangular, column, and row block accesses */
+
+    RECT_TRECT,/*!< This access scheme allows only conflict free rectangular, and transposed rectangular block accesses */
+
     UNDEFINED
 } scheme;
 
@@ -85,7 +90,7 @@ int m_v(int index_i, int index_j, scheme s, int p, int q);
 	\param s selected mapping scheme for the access.
 	\param p size of the PRF on its first dimension.
 	\param q size of the PRF on its second dimension.
-	\return Correspondent linear register row.
+	\return Correspondent linear register column.
 */
 int m_h(int index_i, int index_j, scheme s, int p, int q);
 
@@ -137,11 +142,40 @@ int readFromPR(PolymorphicRegister *pR, int index_i, int index_j);
 int** parallelReadFromPR(PolymorphicRegister *pR, int z);
 
 //Trying to implement the Inverse mapping function
-int** parallelReadRectangleOnly(PolymorphicRegister *pR, int index_i, int index_j);
+//int** parallelReadRectangleOnly(PolymorphicRegister *pR, int index_i, int index_j);
 
-int** parallelReadRow(PolymorphicRegister *pR, int index_i, int index_j);
+//int** parallelReadRow(PolymorphicRegister *pR, int index_i, int index_j);
 
+//! Performs a block read on the PolymorphicRegister.
+/*!
+	\param pR Pointer to the Polymorphic Register.
+	\param index_i Logical index on the horizontal dimension of the top-left element in the accessed block.
+	\param index_j Logical index on the vertical dimension of the top-left element in the accessed block.
+	\param type Access Type defining the shape of the block access.
+
+	\return 2D array resulting from the block read.
+*/
 int** readBlock(PolymorphicRegister *pR, int index_i, int index_j, acc_type type);
 
+//! Computes the conflict matrix relative to a block read on the PolymorphicRegister.
+/*!
+	\param pR Pointer to the Polymorphic Register.
+	\param index_i Logical index on the horizontal dimension of the top-left element in the accessed block.
+	\param index_j Logical index on the vertical dimension of the top-left element in the accessed block.
+	\param type Access Type defining the shape of the block access.
+
+	\return 2D array containing the conflict matrix.
+*/
 int** computeConflicts(PolymorphicRegister *pR, int index_i, int index_j, acc_type type);
+
+//! Generates all the 2D logical addresses of the elements read in a block read.
+/*!
+	\param index_i index of the top-left element in the block read.
+	\param index_j index of the top-left element in the block read.
+	\param p size of the PRF on its first dimension.
+	\param q size of the PRF on its second dimension.
+	\param type access type specifying the shape of the block access.
+	\return list of the 2D addresses of the block read.
+*/
+Address2d* AGU(int index_i, int index_j,int p, int q, acc_type type);
 #endif
