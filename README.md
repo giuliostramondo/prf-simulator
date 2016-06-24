@@ -39,7 +39,7 @@ git clone https://github.com/giuliostramondo/prf-simulator.git
 
 To compile the sources 
 ~~~~~~~~~~~~~~~~
-cd prf\_simulator
+cd prf_simulator
 make
 ~~~~~~~~~~~~~~~~
 
