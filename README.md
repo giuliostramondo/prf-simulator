@@ -51,15 +51,15 @@ Usage
 Usage: ./prf [Options]
 
 
--N <num>	 Change the horizontal size of the input matrix (default 9)
+-N \<num\>	 Change the horizontal size of the input matrix (default 9)
 
--M <num>	 Change the vertical size of the input matrix (default 9)
+-M \<num\>	 Change the vertical size of the input matrix (default 9)
 
--p <num>	 Change the horizontal size of the PRF (default 3)
+-p \<num\>	 Change the horizontal size of the PRF (default 3)
 
--q <num>	 Change the horizontal size of the PRF (default 3)
+-q \<num\>	 Change the horizontal size of the PRF (default 3)
 
--s <num>	 Change the schema used by the PRF (default 0 -> RECTANGLE_ONLY)
+-s \<num\>	 Change the schema used by the PRF (default 0 -> RECTANGLE_ONLY)
 	  		other schemes :
 
 Access Scheme   | Description
@@ -77,8 +77,8 @@ Command         | Description
 show PRF;                        | Prints  a  graphical  representation  that  shows  how  the  input  matrix  ismapped in the 3D PRF. Each layer highlights in red the elements of theinput matrix stored in the pxq memory modules at the correspondent in-dex.  After the highlighted matrix, a pxq matrix is printed to show whichPRF memory module is storing which data.           
 show s;                          | Prints the current schema value.                   
 show matrix;                     | Prints the original NxM input matrix.
-A[<num1>][<num2>];               | Performs a single access on the PRF; The memory module storing theaccessed data is identified using the functions m_v() and m_h(), the in-dex within the memory module is computed using A_standard().  Thosesteps  are  all  implemented  in  readFromPR()  which  is  called  when  this command is invoked.                   
-A[<num1>][<num2>],<ACC_TYPE>;    | Performs a block access. (num1,num2) are the coordinate of the top-leftelement in the accessed block, the shape of the block is specified by theaccess type <ACC_TYPE>.  The original matrix is going to be printed,highlighting the element accessed in parallel. After the output producedby the PRF is shown in the form of a pxq matrix, where each item repre-sent the element read at the respective index.  Lastly the conflict matrixis printed, this shows how many accesses have been performed on eachPRF memory module. Ideally if the block access is conflict free, the ma-trix will contain only 1. The highest number in this matrix also representsthe minimum number of memory accesses necessary, given the currentaccess scheme, to perform the block access.
+A[\<num1\>][\<num2\>];               | Performs a single access on the PRF; The memory module storing theaccessed data is identified using the functions m_v() and m_h(), the in-dex within the memory module is computed using A_standard().  Thosesteps  are  all  implemented  in  readFromPR()  which  is  called  when  this command is invoked.                   
+A[\<num1\>][\<num2\>],\<ACC_TYPE\>;    | Performs a block access. (num1,num2) are the coordinate of the top-leftelement in the accessed block, the shape of the block is specified by theaccess type \<ACC_TYPE\>.  The original matrix is going to be printed,highlighting the element accessed in parallel. After the output producedby the PRF is shown in the form of a pxq matrix, where each item repre-sent the element read at the respective index.  Lastly the conflict matrixis printed, this shows how many accesses have been performed on eachPRF memory module. Ideally if the block access is conflict free, the ma-trix will contain only 1. The highest number in this matrix also representsthe minimum number of memory accesses necessary, given the currentaccess scheme, to perform the block access.
 A*;                              | Performs one block access for each access type, therefore resulting in 5different block accesses.
-set s <num>;                     | Changes the access scheme used by the PRF. After this command thedata in the PRF are remapped using the given scheme.
+set s \<num\>;                     | Changes the access scheme used by the PRF. After this command thedata in the PRF are remapped using the given scheme.
 
