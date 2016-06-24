@@ -35,7 +35,6 @@ To download the code execute the following line from the terminal.
 
 ~~~~~~~~~~~~~~~~~~~~~
 git clone https://github.com/giuliostramondo/prf-simulator.git
-git checkout interactive
 ~~~~~~~~~~~~~~~~~~~~~
 
 To compile the sources 
