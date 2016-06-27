@@ -41,6 +41,7 @@ if(DEBUG){
 	acc_type access_type;
 	scheme mapping_scheme;
 	t_list *list;
+	void *generic;
 }
 
 //------------------------------
@@ -72,6 +73,7 @@ if(DEBUG){
 //%type <couple> rel_item
 //%type <list> exp
 %type <list> arg_list
+%type <generic> argument
 
 //------------------------
 //      Precedenze
@@ -148,22 +150,37 @@ function_call: IDENTIFIER LPAR arg_list RPAR SEMI{
 			}else{
 				t_list *raw_elem = getElementAt($3,0);
 				int index_i = *((int*)(raw_elem->data));
-				raw_elem = getElementAt($3,0);
+				raw_elem = getElementAt($3,1);
 				int index_j = *((int*)(raw_elem->data));
 				int mv= m_v(index_i,index_j,pR->s,pR->p,pR->q);
 				int mh= m_h(index_i,index_j,pR->s,pR->p,pR->q);
 				printf("(%d,%d)\n> ",mv,mh);
+			}
+		}else if(strcmp($1,"AGU")==0){
+			if(length != 3){
+				printf("Wrong number of arguments, function AGU takes 3 arguments\n> ");
+			}else{
+				t_list *raw_elem = getElementAt($3,0);
+				int index_i = *((int*)(raw_elem->data));
+				raw_elem = getElementAt($3,1);
+				int index_j = *((int*)(raw_elem->data));
+				raw_elem = getElementAt($3,2);
+				acc_type type = *((acc_type*)(raw_elem->data));
+				Address2d* addresses = AGU(index_i,index_j,pR->p,pR->q,type);
+				for(int i = 0 ; i<((pR->p)*(pR->q)); i++){
+					printf("(%d, %d) ",addresses[i].i, addresses[i].j);
+				}
+				printf("\n> ");
+
 			}
 		}else{
 			printf("Function %s doesn't exist\n> ",$1);
 		}
 	}
 
-arg_list: arg_list COMMA NUMBER{
-		printDebug("Adding element %d to the given list\n",$3);
-		int *elem = (int*)malloc(sizeof(int));
-		*elem =$3;
-		$$ = addElement($1,elem,-1);
+arg_list: arg_list COMMA argument{
+		printDebug("Adding element %d to the given list\n",*((int*)$3));
+		$$ = addElement($1,$3,-1);
 		int length = getLength($$);
 		printDebug("List length: %d\n",length);
 		for(int i =0; i<length;i++){
@@ -172,17 +189,28 @@ arg_list: arg_list COMMA NUMBER{
 			printDebug("Element %d: %d\n",i,elem);
 		}
 	}
-	| NUMBER
-	{	printDebug("Creating a new arg_list and adding %d\n",$1);
-		int *elem = (int*)malloc(sizeof(int));
-		*elem =$1;
-		$$ = addElement(NULL,elem,-1);	
+	| argument
+	{	printDebug("Creating a new arg_list and adding %d\n",*((int*)$1));
+		$$ = addElement(NULL,$1,-1);	
 		t_list *retrived = getElementAt($$,0);
 		int retrived_int = *((int*)(retrived->data));
 		printDebug("Retrived element : %d\n",retrived_int);
 	}
 ;
 
+argument: NUMBER {
+		printDebug("Argument is a NUMBER");
+		int *elem = (int*)malloc(sizeof(int));
+		*elem =$1;
+		$$ = elem;
+	} |
+	ACC_TYPE {
+		printDebug("Argument is an ACC_TYPE");
+		acc_type *elem = (acc_type*)malloc(sizeof(acc_type));
+		*elem = $1;
+		$$ = elem;
+	}
+;
 set_instruction: SET IDENTIFIER NUMBER SEMI{
 		printDebug("parsed set_instruction\n");
 		if(strcmp($2,"s")==0){
