@@ -4,6 +4,7 @@
 
 #include <string.h>
 #include "struct.h"
+#include "collection.h"
 #include "prf.h"
 #include "parser.tab.h"
 
@@ -37,6 +38,8 @@ ID       [a-zA-Z_][a-zA-Z0-9_]*
 [ \t\f\v]+        { /* Ignore whitespace. */ }
 
 
+"("		  { return LPAR; }
+")"		  { return RPAR; }
 "["               { return LSQUARE; }
 "]"               { return RSQUARE; }
 ";"               { return SEMI; }

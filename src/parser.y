@@ -3,8 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <malloc/malloc.h>
+#include <stdarg.h>
 #include "prf.h"
 #include "utility.h"
+#include "collection.h"
 
 #define DEBUG 0
 int line_num;
@@ -23,6 +25,7 @@ if(DEBUG){
     	va_start(args, format);
 		vprintf(format,args);
 		va_end(args);
+	fflush(stdin);
 	}
 }
 
@@ -37,6 +40,7 @@ if(DEBUG){
 	int intval;
 	acc_type access_type;
 	scheme mapping_scheme;
+	t_list *list;
 }
 
 //------------------------------
@@ -51,6 +55,8 @@ if(DEBUG){
 %token <mapping_scheme> SCHEME
 %token LSQUARE
 %token RSQUARE
+%token LPAR
+%token RPAR
 %token SEMI
 %token COMMA
 %token ALL
@@ -65,6 +71,7 @@ if(DEBUG){
 //%type <list> rel_item_list
 //%type <couple> rel_item
 //%type <list> exp
+%type <list> arg_list
 
 //------------------------
 //      Precedenze
@@ -82,14 +89,17 @@ instructions : instructions instruction |
 	     /*empty*/
 		;
 
-instruction : access_single |
-	     access_block |
-	     set_instruction |
-	     error { 
+instruction : 
+	    	access_single   |
+	    	access_block    |
+		set_instruction |
+		show_instruction| 
+		access_all	|	     
+		function_call   |
+		error { 
 		printf("> ");
-			}|
-	     show_instruction| 
-	     access_all   /*|
+			}   
+		/*|
 	     access_multiple   |
 	     check_instruction */
 		;
@@ -122,6 +132,56 @@ access_all : A ALL SEMI{
 	 	performBlockRead(0,M-1,SECONDARY_DIAG,data_elements1,pR);
 	        printf("> ");
 	};
+
+function_call: IDENTIFIER LPAR arg_list RPAR SEMI{
+	     	int length =getLength($3);
+		printDebug("length: %d",length);
+		printDebug("Function Call\nFunction name:%s\nCalled with %d arguments",$1,length);
+		for(int i = 0 ; i<getLength($3); i++){
+			t_list *raw_elem = getElementAt($3,i);
+			int elem = *((int*)(raw_elem->data));
+			printDebug("Arg %d: %d\n",i,elem);
+		}
+		if(strcmp($1,"m")==0){
+			if(length != 2){
+				printf("Wrong number of arguments, function m takes 2 arguments\n> ");
+			}else{
+				t_list *raw_elem = getElementAt($3,0);
+				int index_i = *((int*)(raw_elem->data));
+				raw_elem = getElementAt($3,0);
+				int index_j = *((int*)(raw_elem->data));
+				int mv= m_v(index_i,index_j,pR->s,pR->p,pR->q);
+				int mh= m_h(index_i,index_j,pR->s,pR->p,pR->q);
+				printf("(%d,%d)\n> ",mv,mh);
+			}
+		}else{
+			printf("Function %s doesn't exist\n> ",$1);
+		}
+	}
+
+arg_list: arg_list COMMA NUMBER{
+		printDebug("Adding element %d to the given list\n",$3);
+		int *elem = (int*)malloc(sizeof(int));
+		*elem =$3;
+		$$ = addElement($1,elem,-1);
+		int length = getLength($$);
+		printDebug("List length: %d\n",length);
+		for(int i =0; i<length;i++){
+			t_list *raw_elem = getElementAt($$,i);
+			int elem = *((int*)(raw_elem->data));
+			printDebug("Element %d: %d\n",i,elem);
+		}
+	}
+	| NUMBER
+	{	printDebug("Creating a new arg_list and adding %d\n",$1);
+		int *elem = (int*)malloc(sizeof(int));
+		*elem =$1;
+		$$ = addElement(NULL,elem,-1);	
+		t_list *retrived = getElementAt($$,0);
+		int retrived_int = *((int*)(retrived->data));
+		printDebug("Retrived element : %d\n",retrived_int);
+	}
+;
 
 set_instruction: SET IDENTIFIER NUMBER SEMI{
 		printDebug("parsed set_instruction\n");

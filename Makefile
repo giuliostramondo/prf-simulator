@@ -10,7 +10,7 @@ $(BINDIR)/prf_console:
 	mv parser.tab.c src/parser.tab.c 
 	mv parser.tab.h src/parser.tab.h 
 	mv lex.yy.c src/lex.yy.c
-	gcc -g src/parser.tab.c src/lex.yy.c src/prf.c src/utility.c -o bin/prf_console
+	gcc -g src/parser.tab.c src/lex.yy.c src/prf.c src/utility.c src/collection.c -o bin/prf_console
 
 $(BINDIR)/prf: $(OBJ)
 	gcc -std=gnu99 \
