@@ -59,7 +59,7 @@ int m_h(int index_i, int index_j, scheme s, int p, int q){
 }
 
 Address2d* AGU(int index_i, int index_j,int p, int q, acc_type type){
-    Address2d* res = (Address2d*) malloc(sizeof(p*q));
+    Address2d* res = (Address2d*) malloc(sizeof(Address2d)*(p*q));
     for(int i=0; i<p;i++)
 	for(int j=0; j<q; j++){
 	    switch(type){
@@ -89,6 +89,8 @@ Address2d* AGU(int index_i, int index_j,int p, int q, acc_type type){
 		    res[i*q+j].j= index_j+i;
 
 		    break;
+		default:
+		    return NULL;
 	    }
 	}
     return res;
@@ -150,6 +152,8 @@ int A_custom(PolymorphicRegister *pR,int index_i, int index_j, int alpha, int be
 		    delta_md = k-(index_i%p)-((l-(index_j%q))%q)%p - c_j1 - (index_j/q)%p;
 		    //c_j2 = ((delta_md%p) w pag 67 of the thesis is undefined.
 		    break;
+		default:
+		    break;
 	    }
 	    break;
 	default:
@@ -201,6 +205,7 @@ void writeToPR(PolymorphicRegister *pR, int data, int index_i, int index_j){
     currentLinReg->data = data;
     return;
 }
+
 
 int readFromPR(PolymorphicRegister *pR, int index_i, int index_j){
     if(pR->s == UNDEFINED){
@@ -343,6 +348,53 @@ int** readBlock(PolymorphicRegister *pR, int index_i, int index_j, acc_type type
     return res;
 }
 
+int** readBlockCustom(PolymorphicRegister *pR, int index_i, int index_j, acc_type type){
+    int **res = (int **)malloc(sizeof(int*)* pR->p);
+    for(int i = 0; i< pR->p;i++){
+	res[i] = (int*) malloc(sizeof(int)*pR->q);
+    }
+
+    for(int i=0; i<pR->p; i++){
+	for(int j=0;j<pR->q; j++){
+	    res[i][j]=-1;
+	}
+    }
+
+    Address2d * generated_accesses = AGU(index_i,index_j,pR->p,pR->q,type);
+    //the address have to be reordered
+    //the reordering should allow to perform the accesses following the placement
+    //of the phisical memory block
+
+    for(int i=0; i<pR->p; i++){
+	for(int j=0;j<pR->q; j++){
+	    Address2d current_access = generated_accesses[i*pR->q+j];
+	    //Checks that generated address are within the input matrix bound
+	    if(current_access.i < 0 || current_access.j < 0 ||
+		    current_access.i >= N || current_access.j >= M)
+		return NULL;
+
+	    int inModuleAddress;
+	    int alpha = current_access.i-index_i;
+	    int beta = current_access.j-index_j;
+	    inModuleAddress =  A_custom(pR,index_i,index_j,alpha, beta, type);
+
+	    //This part represents the full crossbar switch in hw
+	    //Redirecting each access to the right memory cell
+	    int mm_i = m_v(current_access.i,current_access.j,pR->s,pR->p,pR->q);
+	    int mm_j = m_h(current_access.i,current_access.j,pR->s,pR->p,pR->q);
+	    linearRegister *currentLinReg = &(pR->data[mm_i][mm_j]);
+
+	    for(int k = 0;k<inModuleAddress;k++)
+		currentLinReg = currentLinReg->next;
+
+	    //The value is placed again in the original position within the pxq
+	    //parallel access. This is implemented again in hw with a full crossbar
+	    res[i][j]=currentLinReg -> data;
+	}
+    }
+
+    return res;
+}
 
 //This function is going to store the number of times each memory module is accessed
 //in order to perform the requested address, given the current memory scheme.
@@ -373,3 +425,179 @@ int** computeConflicts(PolymorphicRegister *pR, int index_i, int index_j, acc_ty
 
     return res;
 }
+
+t_list* getAvaliableAccessType(scheme s){
+    t_list* listOfAccessTypes= NULL;
+    acc_type *types;
+    switch(s){
+	case RECTANGLE_ONLY:
+	    types= (acc_type*) malloc(sizeof(acc_type));
+	    types[0] = RECTANGLE;
+	    listOfAccessTypes= addElement(listOfAccessTypes,types,-1);
+	    return listOfAccessTypes;
+	case RECT_ROW:
+	    types= (acc_type*) malloc(sizeof(acc_type)*4);
+	    types[0] = RECTANGLE;
+	    types[1] = ROW;
+	    types[2] = MAIN_DIAG;
+	    types[3] = SECONDARY_DIAG;
+	    for(int i=0;i<4;i++)
+		listOfAccessTypes= addElement(listOfAccessTypes,types+i,-1);
+	    return listOfAccessTypes;
+	case RECT_COL:
+	    types= (acc_type*) malloc(sizeof(acc_type)*4);
+	    types[0] = RECTANGLE;
+	    types[1] = COLUMN;
+	    types[2] = MAIN_DIAG;
+	    types[3] = SECONDARY_DIAG;
+	    for(int i=0;i<4;i++)
+		listOfAccessTypes= addElement(listOfAccessTypes,types+i,-1);
+	    return listOfAccessTypes;
+	case ROW_COL:
+	    types= (acc_type*) malloc(sizeof(acc_type)*3);
+	    types[0] = RECTANGLE;
+	    types[1] = ROW;
+	    types[2] = COLUMN;
+	    for(int i=0;i<3;i++)
+		listOfAccessTypes= addElement(listOfAccessTypes,types+i,-1);
+	    return listOfAccessTypes;
+	case RECT_TRECT:
+	    types= (acc_type*) malloc(sizeof(acc_type)*2);
+	    types[0] = RECTANGLE;
+	    types[1] = TRANSP_RECTANGLE;
+	    for(int i=0;i<2;i++)
+		listOfAccessTypes= addElement(listOfAccessTypes,types+i,-1);
+	    return listOfAccessTypes;
+	default:
+	    return NULL;
+    }
+}
+
+int computeCoverageScore(PolymorphicRegister *pR, Address2d* solution,t_list *parallel_accesses){
+    int score = 0;
+    for(int i = 0; i <(pR->p)*(pR->q); i++){
+	t_list* elem = CustomfindElement(parallel_accesses, (void*)(solution+i),compareAddress);
+
+	if(elem!=NULL)
+	    score++;
+    }
+    return score;
+} 
+
+BlockAccess *findLocalBestAccess(PolymorphicRegister *pR,t_list *parallel_accesses, acc_type type, int* score){
+    int bestScore = 0;
+    Address2d bestCoverage;
+    int i_MAX = 0;
+    int j_MAX = 0;
+    int i_MIN = 0;
+    int j_MIN = 0;
+
+    switch(type){
+	case RECTANGLE:
+	    i_MAX= (N-(pR->p));
+	    j_MAX= (M-(pR->q));
+	    break;
+	case ROW:
+	    i_MAX = N-1;
+	    j_MAX = M-((pR->p)*(pR->q));
+	    break;
+	case COLUMN:
+	    i_MAX = N -((pR->p)*(pR->q));
+	    j_MAX = M-1;
+	    break;
+	case TRANSP_RECTANGLE:
+	    i_MAX=N-(pR->q);
+	    j_MAX=M-(pR->p);
+	    break;
+	case MAIN_DIAG:
+	    i_MAX = N -((pR->p)*(pR->q));
+	    j_MAX = M-((pR->p)*(pR->q));
+	    break;
+	case SECONDARY_DIAG:
+	    j_MIN = ((pR->p)*(pR->q));
+	    i_MAX = N-((pR->p)*(pR->q));
+	    j_MAX = M-1;
+	    break;
+	default:
+	   j_MAX = N-1;
+	   i_MAX = M-1;
+	   break;
+
+    }
+
+    for(int i = i_MIN; i<= i_MAX; i++)
+	for(int j =j_MIN ; j<= j_MAX ;j++){
+	    Address2d* currentBlockAccesses = AGU(i,j,pR->p,pR->q,type);
+	    int current_score = computeCoverageScore(pR,currentBlockAccesses,parallel_accesses);
+	    if(current_score > bestScore){
+		bestScore = current_score;
+		bestCoverage.i=i;
+		bestCoverage.j=j;
+	    }
+	}
+
+    BlockAccess* localBest = (BlockAccess*) malloc(sizeof(BlockAccess));
+    (localBest->start_index).i=bestCoverage.i;
+    (localBest->start_index).j=bestCoverage.j;
+    localBest->type= type;
+    *score = bestScore;
+    return localBest;
+}
+
+t_list* parallelAccessCoverage(PolymorphicRegister *pR, t_list *parallel_accesses){
+    t_list *toCover = cloneList(parallel_accesses);
+    t_list *blockAccesses = NULL;
+    t_list *access_type = getAvaliableAccessType(pR->s);	
+    while(getLength(toCover)!=0){
+	int available_access_number = getLength(access_type);
+	BlockAccess *currentBlockAccesses[available_access_number];
+	int coverage_score[available_access_number];
+	int tmp_score;
+	for(int i = 0; i<available_access_number; i++){
+	    t_list *type_el = getElementAt(access_type,i);
+	    acc_type current_type =*((acc_type*)(type_el->data));
+	    currentBlockAccesses[i] = findLocalBestAccess(pR,toCover,current_type,&tmp_score);
+	    coverage_score[i]=tmp_score;
+	}
+	tmp_score = 0;
+	BlockAccess *currentSolution = NULL;
+	for(int i = 0; i<available_access_number;i++){
+	    if(coverage_score[i] > tmp_score){
+		tmp_score=coverage_score[i];
+		currentSolution = currentBlockAccesses[i];
+	    }
+	}
+	blockAccesses = addElement(blockAccesses,currentSolution,-1);
+	Address2d start_index = currentSolution->start_index;
+	Address2d *covered_elements = AGU(start_index.i, start_index.j, pR->p, pR->q, currentSolution->type);
+	for(int i = 0; i<(pR->p*pR->q); i++){
+	    t_list* covered = CustomfindElement(toCover, (void*)(covered_elements+i),compareAddress);
+	    if(covered!=NULL){
+		toCover = removeElement(toCover,covered->data);
+	    }
+	}
+    }
+    return blockAccesses;
+}
+
+int compareAddress(void *a, void *b){
+    Address2d *varA;
+    Address2d *varB;
+    if (a == NULL)
+    {
+	if (b == NULL)
+	    return 1;
+	return 0;
+    }
+
+    if (b == NULL)
+	return 0;
+    varA=(Address2d*)a;
+    varB=(Address2d*)b;
+
+    return ((varA->i == varB->i)&&(varA->j == varB->j));
+
+}
+
+
+

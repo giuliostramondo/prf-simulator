@@ -79,7 +79,11 @@ void printUsage(char *programName);
 	\param type access type defining the block access shape.
 	\param data_elements1 the 2D array containing original input matrix.
 	\param pR pointer to the PolymorphicRegister used for the block read.
+	\param mode select the access mode ( STANDARD or CUSTOM )
 */
-void performBlockRead(int index_i, int index_j, acc_type type,int ** data_elements1, PolymorphicRegister* pR);
+void performBlockRead(int index_i, int index_j, acc_type type,int ** data_elements1, PolymorphicRegister* pR, int mode);
 
+char *accessStringFromAccessType(acc_type type);
+
+int compareAddress(void *a, void *b);
 #endif

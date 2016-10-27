@@ -156,13 +156,21 @@ char *accessStringFromAccessType(acc_type type){
 		    return "RECTANGLE";
 		case TRANSP_RECTANGLE:
 		    return "TRANSP_RECTANGLE";
+		default:
+		    return "";
 	}
 	return "";
 }
-void performBlockRead(int index_i, int index_j, acc_type type,int ** data_elements1, PolymorphicRegister* pR){
-
+void performBlockRead(int index_i, int index_j, acc_type type,int ** data_elements1, PolymorphicRegister* pR, int mode){
+	int **PrLayer;
+    	if(mode == 0){
 	printf("Performing standard access %s A(%d,%d)\n",accessStringFromAccessType(type),index_i,index_j);
-	int **PrLayer = readBlock(pR, index_i, index_j, type);
+	PrLayer = readBlock(pR, index_i, index_j, type);
+	}
+	if(mode ==1 ){
+	printf("Performing custom access %s A(%d,%d)\n",accessStringFromAccessType(type),index_i,index_j);
+	PrLayer = readBlockCustom(pR, index_i, index_j, type);	
+	}
 	if(PrLayer == NULL){
 	    printf("Access out of bound\n");
 	    return;
@@ -175,3 +183,6 @@ void performBlockRead(int index_i, int index_j, acc_type type,int ** data_elemen
 	printConflicts(PrLayer, pR->p, pR->q);
 	printf("\n");
 }
+
+
+

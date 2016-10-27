@@ -2,24 +2,821 @@ AGU	prf.c	/^Address2d* AGU(int index_i, int index_j,int p, int/
 A_custom	prf.c	/^int A_custom(PolymorphicRegister *pR,int index_i, /
 A_standard	prf.c	/^int A_standard(int index_i, int index_j, int p, in/
 Address2d	prf.h	/^}Address2d;$/
+BlockAccess	prf.h	/^}BlockAccess;$/
+CustomfindElement	collection.c	/^    t_list * CustomfindElement(t_list *list, void /
+HOST_INFO_MAX	cscope.out	/^];$/
+KERNEL_BOOT_INFO_MAX	cscope.out	/^];$/
+KERNEL_VERSION_MAX	cscope.out	/^];$/
+LDATA	collection.h	/^#define LDATA(item) ((item)->data)$/
+LNEXT	collection.h	/^#define LNEXT(item) ((item)->next)$/
+LPREV	collection.h	/^#define LPREV(item) ((item)->prev)$/
+MEMORY_OBJECT_INFO_MAX	cscope.out	/^];$/
 Mmain	main.c	/^int main(int argc, char** argv){$/
-Options	utility.h	/^} Options;$/
+Mparser.tab	parser.tab.c	/^int main (int argc, char* argv[]){$/
+PROCESSOR_INFO_MAX	cscope.out	/^];$/
+PROCESSOR_SET_INFO_MAX	cscope.out	/^];$/
 PolymorphicRegister	prf.h	/^} PolymorphicRegister;$/
+SET_DATA	collection.h	/^#define SET_DATA(item, _data) ((item)->data = (_da/
+SET_NEXT	collection.h	/^#define SET_NEXT(item, _next) ((item)->next = (_ne/
+SET_PREV	collection.h	/^#define SET_PREV(item, _prev) ((item)->prev = (_pr/
+TASK_INFO_MAX	cscope.out	/^];$/
+THREAD_INFO_MAX	cscope.out	/^];$/
+THREAD_STATE_MAX	cscope.out	/^];$/
+VM_MAP_ENTRY_MAX	cscope.out	/^];$/
+VM_PAGE_INFO_MAX	cscope.out	/^];$/
+VM_REGION_INFO_MAX	cscope.out	/^];$/
+YYBACKUP	parser.tab.c	/^#define YYBACKUP(Token, Value)					\\$/
+YYID	parser.tab.c	/^YYID (i)$/
+YYPOPSTACK	parser.tab.c	/^#define YYPOPSTACK(N)   (yyvsp -= (N), yyssp -= (N/
+YYRECOVERING	parser.tab.c	/^#define YYRECOVERING()  (!!yyerrstatus)$/
+YYRHSLOC	parser.tab.c	/^#define YYRHSLOC(Rhs, K) ((Rhs)[K])$/
+YYSTYPE	parser.tab.c	/^	YYSTYPE;$/
+YYTRANSLATE	parser.tab.c	/^#define YYTRANSLATE(YYX)						\\$/
+YY_AT_BOL	lex.yy.c	/^#define YY_AT_BOL() (YY_CURRENT_BUFFER_LVALUE->yy_/
+YY_BUFFER_STATE	lex.yy.c	/^typedef struct yy_buffer_state *YY_BUFFER_STATE;$/
+YY_CHAR	lex.yy.c	/^typedef unsigned char YY_CHAR;$/
+YY_FATAL_ERROR	lex.yy.c	/^#define YY_FATAL_ERROR(msg) yy_fatal_error( msg )$/
+YY_INPUT	lex.yy.c	/^#define YY_INPUT(buf,result,max_size) \\$/
+YY_LESS_LINENO	lex.yy.c	/^    #define YY_LESS_LINENO(n)$/
+YY_SC_TO_UI	lex.yy.c	/^#define YY_SC_TO_UI(c) ((unsigned int) (unsigned c/
+YY_STATE_EOF	lex.yy.c	/^#define YY_STATE_EOF(state) (YY_END_OF_BUFFER + st/
 acc_type	prf.h	/^} acc_type;$/
+accessStringFromAccessType	utility.c	/^char *accessStringFromAccessType(acc_type type){$/
+access_all	parser.y	/^access_all : A ALL SEMI{$/
+access_generic	parser.y	/^access_generic: access_all   |$/
+addElement	collection.c	/^t_list * addElement(t_list *list, void * data, int/
+addFirst	collection.c	/^t_list * addFirst(t_list *list, void * data)$/
+addLast	collection.c	/^t_list * addLast(t_list *list, void * data)$/
+addList	collection.c	/^t_list * addList(t_list *list, t_list *elements)$/
+addListToSet	collection.c	/^    t_list * addListToSet(t_list *list, t_list *el/
+addSorted	collection.c	/^    t_list * addSorted(t_list *list, void * data$/
+cloneList	collection.c	/^t_list * cloneList(t_list *list)$/
+compareAddress	prf.c	/^int compareAddress(void *a, void *b){$/
 computeConflicts	prf.c	/^int** computeConflicts(PolymorphicRegister *pR, in/
+computeCoverageScore	prf.c	/^int computeCoverageScore(PolymorphicRegister *pR, /
 createPolymorphicRegister	prf.c	/^PolymorphicRegister *createPolymorphicRegister(int/
+emach_port_guard_exception_codes	cscope.out	/^356 enum $/
+etask_latency_qos	cscope.out	/^139 enum $/
+etask_role	cscope.out	/^114 enum $/
+etask_throughput_qos	cscope.out	/^150 enum $/
+eyytokentype	cscope.out	/^68 enum $/
+findElement	collection.c	/^t_list * findElement(t_list *list, void *data)$/
+findLocalBestAccess	prf.c	/^BlockAccess *findLocalBestAccess(PolymorphicRegist/
+flex_int16_t	lex.yy.c	/^typedef int16_t flex_int16_t;$/
+flex_int32_t	lex.yy.c	/^typedef int32_t flex_int32_t;$/
+flex_int8_t	lex.yy.c	/^typedef int8_t flex_int8_t;$/
+flex_uint16_t	lex.yy.c	/^typedef uint16_t flex_uint16_t;$/
+flex_uint32_t	lex.yy.c	/^typedef uint32_t flex_uint32_t;$/
+flex_uint64_t	lex.yy.c	/^typedef uint64_t flex_uint64_t;$/
+flex_uint8_t	lex.yy.c	/^typedef uint8_t flex_uint8_t;$/
+for	cscope.out	/^1880 for ( $/
+freeList	collection.c	/^void freeList(t_list *list)$/
+function_call	parser.y	/^function_call: IDENTIFIER LPAR arg_list RPAR SEMI{/
+getAvaliableAccessType	prf.c	/^t_list* getAvaliableAccessType(scheme s){$/
+getElementAt	collection.c	/^t_list * getElementAt(t_list *list, unsigned int p/
+getLastElement	collection.c	/^t_list * getLastElement(t_list *list)$/
+getLength	collection.c	/^int getLength(t_list *list)$/
+getPosition	collection.c	/^int getPosition(t_list *list, t_list *element)$/
+gsvalue	cscope.out	/^;$/
+if	cscope.out	/^323 if ( ! $/
+instruction	parser.y	/^instruction : $/
+instructions	parser.y	/^instructions : instructions instruction |$/
+int	cscope.out	/^)(int);$/
 linearRegister	prf.h	/^} linearRegister;$/
 m_h	prf.c	/^int m_h(int index_i, int index_j, scheme s, int p,/
 m_v	prf.c	/^int m_v(int index_i, int index_j, scheme s, int p,/
+newElement	collection.c	/^t_list * newElement(void *data)$/
+parallelAccessCoverage	prf.c	/^t_list* parallelAccessCoverage(PolymorphicRegister/
 parallelReadFromPR	prf.c	/^int** parallelReadFromPR(PolymorphicRegister *pR, /
 parallelReadRectangleOnly	prf.c	/^int** parallelReadRectangleOnly(PolymorphicRegiste/
 parallelReadRow	prf.c	/^int** parallelReadRow(PolymorphicRegister *pR, int/
 parseArguments	utility.c	/^Options parseArguments(int argc, char** argv){$/
+performBlockRead	utility.c	/^void performBlockRead(int index_i, int index_j, ac/
 printConflicts	utility.c	/^void printConflicts(int **inputMatrix, int dim1, i/
+printDebug	parser.tab.c	/^void printDebug(const char * restrict format, ... /
 printMatrix	utility.c	/^void printMatrix(int **inputMatrix, int dim1, int /
 printMatrixHighlight	utility.c	/^void printMatrixHighlight(int **inputMatrix,int di/
 printUsage	utility.c	/^void printUsage(char *programName){$/
 readBlock	prf.c	/^int** readBlock(PolymorphicRegister *pR, int index/
+readBlockCustom	prf.c	/^int** readBlockCustom(PolymorphicRegister *pR, int/
 readFromPR	prf.c	/^int readFromPR(PolymorphicRegister *pR, int index_/
+removeElement	collection.c	/^t_list * removeElement(t_list *list, void * data)$/
+removeElementLink	collection.c	/^extern t_list * removeElementLink(t_list *list, t_/
+removeFirst	collection.c	/^t_list * removeFirst(t_list *list)$/
+s__darwin_pthread_handler_rec	cscope.out	/^57 struct $/
+s__double2	cscope.out	/^654 struct $/
+s__float2	cscope.out	/^653 struct $/
+s__sbuf	cscope.out	/^88 struct $/
+s__sigaction	cscope.out	/^276 struct $/
+s_opaque_pthread_attr_t	cscope.out	/^63 struct $/
+s_opaque_pthread_cond_t	cscope.out	/^68 struct $/
+s_opaque_pthread_condattr_t	cscope.out	/^73 struct $/
+s_opaque_pthread_mutex_t	cscope.out	/^78 struct $/
+s_opaque_pthread_mutexattr_t	cscope.out	/^83 struct $/
+s_opaque_pthread_once_t	cscope.out	/^88 struct $/
+s_opaque_pthread_rwlock_t	cscope.out	/^93 struct $/
+s_opaque_pthread_rwlockattr_t	cscope.out	/^98 struct $/
+s_opaque_pthread_t	cscope.out	/^103 struct $/
+saccessx_descriptor	cscope.out	/^132 struct $/
 scheme	prf.h	/^} scheme;$/
+sexception	cscope.out	/^764 struct $/
+shost_basic_info	cscope.out	/^106 struct $/
+shost_cpu_load_info	cscope.out	/^228 struct $/
+shost_load_info	cscope.out	/^177 struct $/
+shost_priority_info	cscope.out	/^150 struct $/
+shost_sched_info	cscope.out	/^127 struct $/
+sio_stat_entry	cscope.out	/^187 struct $/
+sio_stat_info	cscope.out	/^192 struct $/
+skernel_resource_sizes	cscope.out	/^137 struct $/
+smach_task_basic_info	cscope.out	/^266 struct $/
+smach_timespec	cscope.out	/^61 struct $/
+smach_vm_read_entry	cscope.out	/^294 struct $/
+smemory_object_attr_info	cscope.out	/^200 struct $/
+smemory_object_behave_info	cscope.out	/^207 struct $/
+smemory_object_perf_info	cscope.out	/^195 struct $/
+smstats	cscope.out	/^236 struct $/
+spolicy_bases	cscope.out	/^213 struct $/
+spolicy_fifo_base	cscope.out	/^181 struct $/
+spolicy_fifo_info	cscope.out	/^187 struct $/
+spolicy_fifo_limit	cscope.out	/^184 struct $/
+spolicy_infos	cscope.out	/^225 struct $/
+spolicy_limits	cscope.out	/^219 struct $/
+spolicy_rr_base	cscope.out	/^147 struct $/
+spolicy_rr_info	cscope.out	/^154 struct $/
+spolicy_rr_limit	cscope.out	/^151 struct $/
+spolicy_timeshare_base	cscope.out	/^113 struct $/
+spolicy_timeshare_info	cscope.out	/^119 struct $/
+spolicy_timeshare_limit	cscope.out	/^116 struct $/
+sproc_rlimit_control_wakeupmon	cscope.out	/^353 struct $/
+sprocessor_basic_info	cscope.out	/^98 struct $/
+sprocessor_cpu_load_info	cscope.out	/^111 struct $/
+sprocessor_set_basic_info	cscope.out	/^128 struct $/
+sprocessor_set_load_info	cscope.out	/^140 struct $/
+srlimit	cscope.out	/^325 struct $/
+srusage	cscope.out	/^152 struct $/
+srusage_info_v0	cscope.out	/^194 struct $/
+srusage_info_v1	cscope.out	/^208 struct $/
+srusage_info_v2	cscope.out	/^228 struct $/
+srusage_info_v3	cscope.out	/^250 struct $/
+ssigaction	cscope.out	/^286 struct $/
+ssigevent	cscope.out	/^168 struct $/
+ssigstack	cscope.out	/^367 struct $/
+ssigvec	cscope.out	/^348 struct $/
+stask_absolutetime_info	cscope.out	/^190 struct $/
+stask_affinity_tag_info	cscope.out	/^227 struct $/
+stask_basic_info	cscope.out	/^133 struct $/
+stask_basic_info_32	cscope.out	/^97 struct $/
+stask_basic_info_64	cscope.out	/^113 struct $/
+stask_category_policy	cscope.out	/^128 struct $/
+stask_dyld_info	cscope.out	/^240 struct $/
+stask_events_info	cscope.out	/^158 struct $/
+stask_extmod_info	cscope.out	/^255 struct $/
+stask_flags_info	cscope.out	/^386 struct $/
+stask_kernelmemory_info	cscope.out	/^204 struct $/
+stask_power_info	cscope.out	/^285 struct $/
+stask_power_info_v2	cscope.out	/^371 struct $/
+stask_qos_policy	cscope.out	/^165 struct $/
+stask_thread_times_info	cscope.out	/^176 struct $/
+stask_trace_memory_info	cscope.out	/^340 struct $/
+stask_vm_info	cscope.out	/^303 struct $/
+stask_wait_state_info	cscope.out	/^351 struct $/
+sthread_affinity_policy	cscope.out	/^206 struct $/
+sthread_background_policy	cscope.out	/^224 struct $/
+sthread_basic_info	cscope.out	/^92 struct $/
+sthread_extended_info	cscope.out	/^152 struct $/
+sthread_extended_policy	cscope.out	/^109 struct $/
+sthread_identifier_info	cscope.out	/^111 struct $/
+sthread_latency_qos_policy	cscope.out	/^238 struct $/
+sthread_precedence_policy	cscope.out	/^176 struct $/
+sthread_standard_policy	cscope.out	/^86 struct $/
+sthread_throughput_qos_policy	cscope.out	/^251 struct $/
+sthread_time_constraint_policy	cscope.out	/^148 struct $/
+stime_value	cscope.out	/^66 struct $/
+svm32_read_entry	cscope.out	/^305 struct $/
+svm_extmod_statistics	cscope.out	/^188 struct $/
+svm_page_info_basic	cscope.out	/^329 struct $/
+svm_purgeable_info	cscope.out	/^205 struct $/
+svm_read_entry	cscope.out	/^299 struct $/
+svm_region_basic_info	cscope.out	/^103 struct $/
+svm_region_basic_info_64	cscope.out	/^75 struct $/
+svm_region_extended_info	cscope.out	/^141 struct $/
+svm_region_submap_info	cscope.out	/^202 struct $/
+svm_region_submap_info_64	cscope.out	/^229 struct $/
+svm_region_submap_short_info_64	cscope.out	/^269 struct $/
+svm_region_top_info	cscope.out	/^165 struct $/
+svm_statistics	cscope.out	/^84 struct $/
+svm_statistics64	cscope.out	/^132 struct $/
+sx86_avx_state	cscope.out	/^268 struct $/
+sx86_debug_state	cscope.out	/^260 struct $/
+sx86_exception_state	cscope.out	/^252 struct $/
+sx86_float_state	cscope.out	/^244 struct $/
+sx86_state_hdr	cscope.out	/^149 struct $/
+sx86_thread_state	cscope.out	/^236 struct $/
+tAddress2d	cscope.out	/^;$/
+tBlockAccess	cscope.out	/^;$/
+tFILE	cscope.out	/^;$/
+tOptions	cscope.out	/^;$/
+tPolymorphicRegister	cscope.out	/^;$/
+tUNDServerRef	cscope.out	/^;$/
+tYY_CHAR	cscope.out	/^;$/
+t__darwin_blkcnt_t	cscope.out	/^;$/
+t__darwin_blksize_t	cscope.out	/^;$/
+t__darwin_clock_t	cscope.out	/^;$/
+t__darwin_ct_rune_t	cscope.out	/^;$/
+t__darwin_dev_t	cscope.out	/^;$/
+t__darwin_fp_control_t	cscope.out	/^;$/
+t__darwin_fp_status_t	cscope.out	/^;$/
+t__darwin_fsblkcnt_t	cscope.out	/^;$/
+t__darwin_fsfilcnt_t	cscope.out	/^;$/
+t__darwin_gid_t	cscope.out	/^;$/
+t__darwin_id_t	cscope.out	/^;$/
+t__darwin_ino64_t	cscope.out	/^;$/
+t__darwin_ino_t	cscope.out	/^;$/
+t__darwin_intptr_t	cscope.out	/^;$/
+t__darwin_mach_port_name_t	cscope.out	/^;$/
+t__darwin_mach_port_t	cscope.out	/^;$/
+t__darwin_mbstate_t	cscope.out	/^;$/
+t__darwin_mode_t	cscope.out	/^;$/
+t__darwin_natural_t	cscope.out	/^;$/
+t__darwin_nl_item	cscope.out	/^;$/
+t__darwin_off_t	cscope.out	/^;$/
+t__darwin_pid_t	cscope.out	/^;$/
+t__darwin_pthread_attr_t	cscope.out	/^;$/
+t__darwin_pthread_cond_t	cscope.out	/^;$/
+t__darwin_pthread_condattr_t	cscope.out	/^;$/
+t__darwin_pthread_key_t	cscope.out	/^;$/
+t__darwin_pthread_mutex_t	cscope.out	/^;$/
+t__darwin_pthread_mutexattr_t	cscope.out	/^;$/
+t__darwin_pthread_once_t	cscope.out	/^;$/
+t__darwin_pthread_rwlock_t	cscope.out	/^;$/
+t__darwin_pthread_rwlockattr_t	cscope.out	/^;$/
+t__darwin_pthread_t	cscope.out	/^;$/
+t__darwin_ptrdiff_t	cscope.out	/^;$/
+t__darwin_rune_t	cscope.out	/^;$/
+t__darwin_sigset_t	cscope.out	/^;$/
+t__darwin_size_t	cscope.out	/^;$/
+t__darwin_socklen_t	cscope.out	/^;$/
+t__darwin_ssize_t	cscope.out	/^;$/
+t__darwin_suseconds_t	cscope.out	/^;$/
+t__darwin_time_t	cscope.out	/^;$/
+t__darwin_uid_t	cscope.out	/^;$/
+t__darwin_useconds_t	cscope.out	/^;$/
+t__darwin_uuid_string_t	cscope.out	/^[37];$/
+t__darwin_uuid_t	cscope.out	/^[16];$/
+t__darwin_va_list	cscope.out	/^;$/
+t__darwin_wchar_t	cscope.out	/^;$/
+t__darwin_wctrans_t	cscope.out	/^;$/
+t__darwin_wctype_t	cscope.out	/^;$/
+t__darwin_wint_t	cscope.out	/^;$/
+t__int16_t	cscope.out	/^;$/
+t__int32_t	cscope.out	/^;$/
+t__int64_t	cscope.out	/^;$/
+t__int8_t	cscope.out	/^;$/
+t__uint16_t	cscope.out	/^;$/
+t__uint32_t	cscope.out	/^;$/
+t__uint64_t	cscope.out	/^;$/
+t__uint8_t	cscope.out	/^;$/
+t_list	collection.h	/^}t_list;$/
+taddr64_t	cscope.out	/^;$/
+talarm_port_t	cscope.out	/^;$/
+talarm_t	cscope.out	/^;$/
+talarm_type_t	cscope.out	/^;$/
+tboolean_t	cscope.out	/^;$/
+tbootstrap_t	cscope.out	/^;$/
+tclock_attr_t	cscope.out	/^;$/
+tclock_ctrl_port_t	cscope.out	/^;$/
+tclock_ctrl_t	cscope.out	/^;$/
+tclock_flavor_t	cscope.out	/^;$/
+tclock_id_t	cscope.out	/^;$/
+tclock_reply_t	cscope.out	/^;$/
+tclock_res_t	cscope.out	/^;$/
+tclock_serv_port_t	cscope.out	/^;$/
+tclock_serv_t	cscope.out	/^;$/
+tcoalition_t	cscope.out	/^;$/
+tcpu_subtype_t	cscope.out	/^;$/
+tcpu_threadtype_t	cscope.out	/^;$/
+tcpu_type_t	cscope.out	/^;$/
+tct_rune_t	cscope.out	/^;$/
+tdata	cscope.out	/^);$/
+tdev_t	cscope.out	/^;$/
+tdouble_t	cscope.out	/^;$/
+temulation_vector_t	cscope.out	/^;$/
+terrno_t	cscope.out	/^;$/
+texception_behavior_array_t	cscope.out	/^;$/
+texception_behavior_t	cscope.out	/^;$/
+texception_data_t	cscope.out	/^;$/
+texception_data_type_t	cscope.out	/^;$/
+texception_flavor_array_t	cscope.out	/^;$/
+texception_handler_array_t	cscope.out	/^;$/
+texception_handler_t	cscope.out	/^;$/
+texception_mask_array_t	cscope.out	/^;$/
+texception_mask_t	cscope.out	/^;$/
+texception_port_arrary_t	cscope.out	/^;$/
+texception_port_array_t	cscope.out	/^;$/
+texception_port_t	cscope.out	/^;$/
+texception_type_t	cscope.out	/^;$/
+tfd_set	cscope.out	/^;$/
+tfloat_t	cscope.out	/^;$/
+tfp_control_t	cscope.out	/^;$/
+tfp_status_t	cscope.out	/^;$/
+tfpos_t	cscope.out	/^;$/
+tgid_t	cscope.out	/^;$/
+tgpu_energy_data_t	cscope.out	/^;$/
+thost_basic_info_data_t	cscope.out	/^;$/
+thost_basic_info_t	cscope.out	/^;$/
+thost_cpu_load_info_data_t	cscope.out	/^;$/
+thost_cpu_load_info_t	cscope.out	/^;$/
+thost_flavor_t	cscope.out	/^;$/
+thost_info64_t	cscope.out	/^;$/
+thost_info_t	cscope.out	/^;$/
+thost_load_info_data_t	cscope.out	/^;$/
+thost_load_info_t	cscope.out	/^;$/
+thost_name_port_t	cscope.out	/^;$/
+thost_name_t	cscope.out	/^;$/
+thost_priority_info_data_t	cscope.out	/^;$/
+thost_priority_info_t	cscope.out	/^;$/
+thost_priv_t	cscope.out	/^;$/
+thost_purgable_info_data_t	cscope.out	/^;$/
+thost_purgable_info_t	cscope.out	/^;$/
+thost_sched_info_data_t	cscope.out	/^;$/
+thost_sched_info_t	cscope.out	/^;$/
+thost_security_t	cscope.out	/^;$/
+thost_t	cscope.out	/^;$/
+ti386_exception_state_t	cscope.out	/^;$/
+ti386_float_state_t	cscope.out	/^;$/
+ti386_thread_state_t	cscope.out	/^;$/
+tid_t	cscope.out	/^;$/
+tint16_t	cscope.out	/^;$/
+tint32_t	cscope.out	/^;$/
+tint64_t	cscope.out	/^;$/
+tint8_t	cscope.out	/^;$/
+tint_fast16_t	cscope.out	/^;$/
+tint_fast32_t	cscope.out	/^;$/
+tint_fast64_t	cscope.out	/^;$/
+tint_fast8_t	cscope.out	/^;$/
+tint_least16_t	cscope.out	/^;$/
+tint_least32_t	cscope.out	/^;$/
+tint_least64_t	cscope.out	/^;$/
+tint_least8_t	cscope.out	/^;$/
+tinteger_t	cscope.out	/^;$/
+tintmax_t	cscope.out	/^;$/
+tintptr_t	cscope.out	/^;$/
+tio_master_t	cscope.out	/^;$/
+tio_stat_info_t	cscope.out	/^;$/
+tipc_space_port_t	cscope.out	/^;$/
+tipc_space_t	cscope.out	/^;$/
+tipc_voucher_attr_control_t	cscope.out	/^;$/
+tipc_voucher_attr_manager_t	cscope.out	/^;$/
+tipc_voucher_t	cscope.out	/^;$/
+tkern_return_t	cscope.out	/^;$/
+tkernel_resource_sizes_data_t	cscope.out	/^;$/
+tkernel_resource_sizes_t	cscope.out	/^;$/
+tkmod_args_t	cscope.out	/^;$/
+tkmod_control_flavor_t	cscope.out	/^;$/
+tkmod_info_32_v1_t	cscope.out	/^;$/
+tkmod_info_64_v1_t	cscope.out	/^;$/
+tkmod_info_array_t	cscope.out	/^;$/
+tkmod_info_t	cscope.out	/^;$/
+tkmod_reference_t	cscope.out	/^;$/
+tkmod_t	cscope.out	/^;$/
+tlabelstr_t	cscope.out	/^;$/
+tledger_amount_t	cscope.out	/^;$/
+tledger_array_t	cscope.out	/^;$/
+tledger_item_t	cscope.out	/^;$/
+tledger_port_array_t	cscope.out	/^;$/
+tledger_port_t	cscope.out	/^;$/
+tledger_t	cscope.out	/^;$/
+tlinearRegister	cscope.out	/^;$/
+tlocal_memory	cscope.out	/^);$/
+tlock_set_port_t	cscope.out	/^;$/
+tlock_set_t	cscope.out	/^;$/
+tmach_exception_code_t	cscope.out	/^;$/
+tmach_exception_data_t	cscope.out	/^;$/
+tmach_exception_data_type_t	cscope.out	/^;$/
+tmach_exception_subcode_t	cscope.out	/^;$/
+tmach_msg_bits_t	cscope.out	/^;$/
+tmach_msg_copy_options_t	cscope.out	/^;$/
+tmach_msg_descriptor_type_t	cscope.out	/^;$/
+tmach_msg_format_0_trailer_t	cscope.out	/^;$/
+tmach_msg_id_t	cscope.out	/^;$/
+tmach_msg_max_trailer_t	cscope.out	/^;$/
+tmach_msg_option_t	cscope.out	/^;$/
+tmach_msg_options_t	cscope.out	/^;$/
+tmach_msg_return_t	cscope.out	/^;$/
+tmach_msg_size_t	cscope.out	/^;$/
+tmach_msg_timeout_t	cscope.out	/^;$/
+tmach_msg_trailer_info_t	cscope.out	/^;$/
+tmach_msg_trailer_size_t	cscope.out	/^;$/
+tmach_msg_trailer_type_t	cscope.out	/^;$/
+tmach_msg_type_name_t	cscope.out	/^;$/
+tmach_msg_type_number_t	cscope.out	/^;$/
+tmach_msg_type_size_t	cscope.out	/^;$/
+tmach_port_array_t	cscope.out	/^;$/
+tmach_port_context_t	cscope.out	/^;$/
+tmach_port_delta_t	cscope.out	/^;$/
+tmach_port_flavor_t	cscope.out	/^;$/
+tmach_port_info_ext_t	cscope.out	/^;$/
+tmach_port_info_t	cscope.out	/^;$/
+tmach_port_limits_t	cscope.out	/^;$/
+tmach_port_mscount_t	cscope.out	/^;$/
+tmach_port_msgcount_t	cscope.out	/^;$/
+tmach_port_name_array_t	cscope.out	/^;$/
+tmach_port_name_t	cscope.out	/^;$/
+tmach_port_options_ptr_t	cscope.out	/^;$/
+tmach_port_options_t	cscope.out	/^;$/
+tmach_port_qos_t	cscope.out	/^;$/
+tmach_port_right_t	cscope.out	/^;$/
+tmach_port_rights_t	cscope.out	/^;$/
+tmach_port_seqno_t	cscope.out	/^;$/
+tmach_port_srights_t	cscope.out	/^;$/
+tmach_port_status_t	cscope.out	/^;$/
+tmach_port_t	cscope.out	/^;$/
+tmach_port_type_array_t	cscope.out	/^;$/
+tmach_port_type_t	cscope.out	/^;$/
+tmach_port_urefs_t	cscope.out	/^;$/
+tmach_task_basic_info_data_t	cscope.out	/^;$/
+tmach_task_basic_info_t	cscope.out	/^;$/
+tmach_timespec_t	cscope.out	/^;$/
+tmach_vm_address_t	cscope.out	/^;$/
+tmach_vm_offset_t	cscope.out	/^;$/
+tmach_vm_size_t	cscope.out	/^;$/
+tmach_voucher_attr_command_t	cscope.out	/^;$/
+tmach_voucher_attr_content_size_t	cscope.out	/^;$/
+tmach_voucher_attr_content_t	cscope.out	/^;$/
+tmach_voucher_attr_control_flags_t	cscope.out	/^;$/
+tmach_voucher_attr_control_t	cscope.out	/^;$/
+tmach_voucher_attr_importance_refs	cscope.out	/^;$/
+tmach_voucher_attr_key_array_t	cscope.out	/^;$/
+tmach_voucher_attr_key_t	cscope.out	/^;$/
+tmach_voucher_attr_manager_t	cscope.out	/^;$/
+tmach_voucher_attr_raw_recipe_array_size_t	cscope.out	/^;$/
+tmach_voucher_attr_raw_recipe_array_t	cscope.out	/^;$/
+tmach_voucher_attr_raw_recipe_size_t	cscope.out	/^;$/
+tmach_voucher_attr_raw_recipe_t	cscope.out	/^;$/
+tmach_voucher_attr_recipe_command_array_t	cscope.out	/^;$/
+tmach_voucher_attr_recipe_command_t	cscope.out	/^;$/
+tmach_voucher_attr_recipe_data_t	cscope.out	/^;$/
+tmach_voucher_attr_recipe_size_t	cscope.out	/^;$/
+tmach_voucher_attr_recipe_t	cscope.out	/^;$/
+tmach_voucher_attr_value_flags_t	cscope.out	/^;$/
+tmach_voucher_attr_value_handle_array_size_t	cscope.out	/^;$/
+tmach_voucher_attr_value_handle_array_t	cscope.out	/^;$/
+tmach_voucher_attr_value_handle_t	cscope.out	/^;$/
+tmach_voucher_attr_value_reference_t	cscope.out	/^;$/
+tmach_voucher_name_array_t	cscope.out	/^;$/
+tmach_voucher_name_t	cscope.out	/^;$/
+tmach_voucher_selector_t	cscope.out	/^;$/
+tmach_voucher_t	cscope.out	/^;$/
+tmalloc_introspection_t	cscope.out	/^;$/
+tmalloc_statistics_t	cscope.out	/^;$/
+tmalloc_zone_t	cscope.out	/^;$/
+tmax_align_t	cscope.out	/^;$/
+tmcontext_t	cscope.out	/^;$/
+tmem_entry_name_port_t	cscope.out	/^;$/
+tmemory_object_array_t	cscope.out	/^;$/
+tmemory_object_attr_info_data_t	cscope.out	/^;$/
+tmemory_object_attr_info_t	cscope.out	/^;$/
+tmemory_object_behave_info_data_t	cscope.out	/^;$/
+tmemory_object_behave_info_t	cscope.out	/^;$/
+tmemory_object_cluster_size_t	cscope.out	/^;$/
+tmemory_object_control_t	cscope.out	/^;$/
+tmemory_object_copy_strategy_t	cscope.out	/^;$/
+tmemory_object_default_t	cscope.out	/^;$/
+tmemory_object_fault_info_t	cscope.out	/^;$/
+tmemory_object_flavor_t	cscope.out	/^;$/
+tmemory_object_info_t	cscope.out	/^;$/
+tmemory_object_name_t	cscope.out	/^;$/
+tmemory_object_offset_t	cscope.out	/^;$/
+tmemory_object_perf_info_data_t	cscope.out	/^;$/
+tmemory_object_perf_info_t	cscope.out	/^;$/
+tmemory_object_return_t	cscope.out	/^;$/
+tmemory_object_size_t	cscope.out	/^;$/
+tmemory_object_t	cscope.out	/^;$/
+tmode_t	cscope.out	/^;$/
+tnatural_t	cscope.out	/^;$/
+toff_t	cscope.out	/^;$/
+tpid_t	cscope.out	/^;$/
+tpointer_t	cscope.out	/^;$/
+tpolicy_base_data_t	cscope.out	/^;$/
+tpolicy_base_t	cscope.out	/^;$/
+tpolicy_fifo_base_data_t	cscope.out	/^;$/
+tpolicy_fifo_base_t	cscope.out	/^;$/
+tpolicy_fifo_info_data_t	cscope.out	/^;$/
+tpolicy_fifo_info_t	cscope.out	/^;$/
+tpolicy_fifo_limit_data_t	cscope.out	/^;$/
+tpolicy_fifo_limit_t	cscope.out	/^;$/
+tpolicy_info_data_t	cscope.out	/^;$/
+tpolicy_info_t	cscope.out	/^;$/
+tpolicy_limit_data_t	cscope.out	/^;$/
+tpolicy_limit_t	cscope.out	/^;$/
+tpolicy_rr_base_data_t	cscope.out	/^;$/
+tpolicy_rr_base_t	cscope.out	/^;$/
+tpolicy_rr_info_data_t	cscope.out	/^;$/
+tpolicy_rr_info_t	cscope.out	/^;$/
+tpolicy_rr_limit_data_t	cscope.out	/^;$/
+tpolicy_rr_limit_t	cscope.out	/^;$/
+tpolicy_t	cscope.out	/^;$/
+tpolicy_timeshare_base_data_t	cscope.out	/^;$/
+tpolicy_timeshare_base_t	cscope.out	/^;$/
+tpolicy_timeshare_info_data_t	cscope.out	/^;$/
+tpolicy_timeshare_info_t	cscope.out	/^;$/
+tpolicy_timeshare_limit_data_t	cscope.out	/^;$/
+tpolicy_timeshare_limit_t	cscope.out	/^;$/
+tport_name_array_t	cscope.out	/^;$/
+tport_name_t	cscope.out	/^;$/
+tport_t	cscope.out	/^;$/
+tppnum_t	cscope.out	/^;$/
+tprocessor_array_t	cscope.out	/^;$/
+tprocessor_basic_info_data_t	cscope.out	/^;$/
+tprocessor_basic_info_t	cscope.out	/^;$/
+tprocessor_cpu_load_info_data_t	cscope.out	/^;$/
+tprocessor_cpu_load_info_t	cscope.out	/^;$/
+tprocessor_flavor_t	cscope.out	/^;$/
+tprocessor_info_array_t	cscope.out	/^;$/
+tprocessor_info_t	cscope.out	/^;$/
+tprocessor_port_array_t	cscope.out	/^;$/
+tprocessor_port_t	cscope.out	/^;$/
+tprocessor_set_array_t	cscope.out	/^;$/
+tprocessor_set_basic_info_data_t	cscope.out	/^;$/
+tprocessor_set_basic_info_t	cscope.out	/^;$/
+tprocessor_set_control_port_t	cscope.out	/^;$/
+tprocessor_set_control_t	cscope.out	/^;$/
+tprocessor_set_flavor_t	cscope.out	/^;$/
+tprocessor_set_info_t	cscope.out	/^;$/
+tprocessor_set_load_info_data_t	cscope.out	/^;$/
+tprocessor_set_load_info_t	cscope.out	/^;$/
+tprocessor_set_name_array_t	cscope.out	/^;$/
+tprocessor_set_name_port_array_t	cscope.out	/^;$/
+tprocessor_set_name_port_t	cscope.out	/^;$/
+tprocessor_set_name_t	cscope.out	/^;$/
+tprocessor_set_port_t	cscope.out	/^;$/
+tprocessor_set_t	cscope.out	/^;$/
+tprocessor_t	cscope.out	/^;$/
+tpthread_attr_t	cscope.out	/^;$/
+tptrdiff_t	cscope.out	/^;$/
+treg64_t	cscope.out	/^;$/
+tregister_t	cscope.out	/^;$/
+trlim_t	cscope.out	/^;$/
+trsize_t	cscope.out	/^;$/
+trune_t	cscope.out	/^;$/
+trusage_info_current	cscope.out	/^;$/
+trusage_info_t	cscope.out	/^;$/
+tsemaphore_port_t	cscope.out	/^;$/
+tsemaphore_t	cscope.out	/^;$/
+tsig_atomic_t	cscope.out	/^;$/
+tsiginfo_t	cscope.out	/^;$/
+tsigset_t	cscope.out	/^;$/
+tsize_t	cscope.out	/^;$/
+tsleep_type_t	cscope.out	/^;$/
+tssize_t	cscope.out	/^;$/
+tstack_t	cscope.out	/^;$/
+tsuseconds_t	cscope.out	/^;$/
+tsyscall_arg_t	cscope.out	/^;$/
+ttask_absolutetime_info_data_t	cscope.out	/^;$/
+ttask_absolutetime_info_t	cscope.out	/^;$/
+ttask_affinity_tag_info_data_t	cscope.out	/^;$/
+ttask_affinity_tag_info_t	cscope.out	/^;$/
+ttask_array_t	cscope.out	/^;$/
+ttask_basic_info_32_data_t	cscope.out	/^;$/
+ttask_basic_info_32_t	cscope.out	/^;$/
+ttask_basic_info_64_data_t	cscope.out	/^;$/
+ttask_basic_info_64_t	cscope.out	/^;$/
+ttask_basic_info_data_t	cscope.out	/^;$/
+ttask_basic_info_t	cscope.out	/^;$/
+ttask_category_policy_data_t	cscope.out	/^;$/
+ttask_category_policy_t	cscope.out	/^;$/
+ttask_dyld_info_data_t	cscope.out	/^;$/
+ttask_dyld_info_t	cscope.out	/^;$/
+ttask_events_info_data_t	cscope.out	/^;$/
+ttask_events_info_t	cscope.out	/^;$/
+ttask_extmod_info_data_t	cscope.out	/^;$/
+ttask_extmod_info_t	cscope.out	/^;$/
+ttask_flags_info_data_t	cscope.out	/^;$/
+ttask_flags_info_t	cscope.out	/^;$/
+ttask_flavor_t	cscope.out	/^;$/
+ttask_info_t	cscope.out	/^;$/
+ttask_kernelmemory_info_data_t	cscope.out	/^;$/
+ttask_kernelmemory_info_t	cscope.out	/^;$/
+ttask_latency_qos_t	cscope.out	/^;$/
+ttask_name_t	cscope.out	/^;$/
+ttask_policy_flavor_t	cscope.out	/^;$/
+ttask_policy_t	cscope.out	/^;$/
+ttask_port_array_t	cscope.out	/^;$/
+ttask_port_t	cscope.out	/^;$/
+ttask_power_info_data_t	cscope.out	/^;$/
+ttask_power_info_t	cscope.out	/^;$/
+ttask_power_info_v2_data_t	cscope.out	/^;$/
+ttask_power_info_v2_t	cscope.out	/^;$/
+ttask_purgable_info_t	cscope.out	/^;$/
+ttask_qos_policy_t	cscope.out	/^;$/
+ttask_role_t	cscope.out	/^;$/
+ttask_special_port_t	cscope.out	/^;$/
+ttask_suspension_token_t	cscope.out	/^;$/
+ttask_t	cscope.out	/^;$/
+ttask_thread_times_info_data_t	cscope.out	/^;$/
+ttask_thread_times_info_t	cscope.out	/^;$/
+ttask_throughput_qos_t	cscope.out	/^;$/
+ttask_trace_memory_info_data_t	cscope.out	/^;$/
+ttask_trace_memory_info_t	cscope.out	/^;$/
+ttask_vm_info_data_t	cscope.out	/^;$/
+ttask_vm_info_t	cscope.out	/^;$/
+ttask_wait_state_info_data_t	cscope.out	/^;$/
+ttask_wait_state_info_t	cscope.out	/^;$/
+tthread_act_array_t	cscope.out	/^;$/
+tthread_act_port_array_t	cscope.out	/^;$/
+tthread_act_port_t	cscope.out	/^;$/
+tthread_act_t	cscope.out	/^;$/
+tthread_affinity_policy_data_t	cscope.out	/^;$/
+tthread_affinity_policy_t	cscope.out	/^;$/
+tthread_array_t	cscope.out	/^;$/
+tthread_background_policy_data_t	cscope.out	/^;$/
+tthread_background_policy_t	cscope.out	/^;$/
+tthread_basic_info_data_t	cscope.out	/^;$/
+tthread_basic_info_t	cscope.out	/^;$/
+tthread_extended_info_data_t	cscope.out	/^;$/
+tthread_extended_info_t	cscope.out	/^;$/
+tthread_extended_policy_data_t	cscope.out	/^;$/
+tthread_extended_policy_t	cscope.out	/^;$/
+tthread_flavor_t	cscope.out	/^;$/
+tthread_identifier_info_data_t	cscope.out	/^;$/
+tthread_identifier_info_t	cscope.out	/^;$/
+tthread_info_t	cscope.out	/^;$/
+tthread_latency_qos_policy_data_t	cscope.out	/^;$/
+tthread_latency_qos_policy_t	cscope.out	/^;$/
+tthread_latency_qos_t	cscope.out	/^;$/
+tthread_policy_flavor_t	cscope.out	/^;$/
+tthread_policy_t	cscope.out	/^;$/
+tthread_port_array_t	cscope.out	/^;$/
+tthread_port_t	cscope.out	/^;$/
+tthread_precedence_policy_data_t	cscope.out	/^;$/
+tthread_precedence_policy_t	cscope.out	/^;$/
+tthread_standard_policy_data_t	cscope.out	/^;$/
+tthread_standard_policy_t	cscope.out	/^;$/
+tthread_state_flavor_array_t	cscope.out	/^;$/
+tthread_state_flavor_t	cscope.out	/^;$/
+tthread_state_t	cscope.out	/^;$/
+tthread_t	cscope.out	/^;$/
+tthread_throughput_qos_policy_data_t	cscope.out	/^;$/
+tthread_throughput_qos_policy_t	cscope.out	/^;$/
+tthread_throughput_qos_t	cscope.out	/^;$/
+tthread_time_constraint_policy_data_t	cscope.out	/^;$/
+tthread_time_constraint_policy_t	cscope.out	/^;$/
+ttime_t	cscope.out	/^;$/
+ttime_value_t	cscope.out	/^;$/
+tu_int16_t	cscope.out	/^;$/
+tu_int32_t	cscope.out	/^;$/
+tu_int64_t	cscope.out	/^;$/
+tu_int8_t	cscope.out	/^;$/
+tucontext_t	cscope.out	/^;$/
+tuid_t	cscope.out	/^;$/
+tuint16_t	cscope.out	/^;$/
+tuint32_t	cscope.out	/^;$/
+tuint64_t	cscope.out	/^;$/
+tuint8_t	cscope.out	/^;$/
+tuint_fast16_t	cscope.out	/^;$/
+tuint_fast32_t	cscope.out	/^;$/
+tuint_fast64_t	cscope.out	/^;$/
+tuint_fast8_t	cscope.out	/^;$/
+tuint_least16_t	cscope.out	/^;$/
+tuint_least32_t	cscope.out	/^;$/
+tuint_least64_t	cscope.out	/^;$/
+tuint_least8_t	cscope.out	/^;$/
+tuintmax_t	cscope.out	/^;$/
+tuintptr_t	cscope.out	/^;$/
+tupl_t	cscope.out	/^;$/
+tuseconds_t	cscope.out	/^;$/
+tuser_addr_t	cscope.out	/^;$/
+tuser_long_t	cscope.out	/^;$/
+tuser_off_t	cscope.out	/^;$/
+tuser_size_t	cscope.out	/^;$/
+tuser_ssize_t	cscope.out	/^;$/
+tuser_subsystem_t	cscope.out	/^;$/
+tuser_time_t	cscope.out	/^;$/
+tuser_ulong_t	cscope.out	/^;$/
+tuuid_t	cscope.out	/^;$/
+tva_list	cscope.out	/^;$/
+tvm32_object_id_t	cscope.out	/^;$/
+tvm_address_t	cscope.out	/^;$/
+tvm_behavior_t	cscope.out	/^;$/
+tvm_extmod_statistics_data_t	cscope.out	/^;$/
+tvm_extmod_statistics_t	cscope.out	/^;$/
+tvm_inherit_t	cscope.out	/^;$/
+tvm_machine_attribute_t	cscope.out	/^;$/
+tvm_machine_attribute_val_t	cscope.out	/^;$/
+tvm_map_address_t	cscope.out	/^;$/
+tvm_map_offset_t	cscope.out	/^;$/
+tvm_map_size_t	cscope.out	/^;$/
+tvm_map_t	cscope.out	/^;$/
+tvm_named_entry_t	cscope.out	/^;$/
+tvm_object_id_t	cscope.out	/^;$/
+tvm_object_offset_t	cscope.out	/^;$/
+tvm_object_size_t	cscope.out	/^;$/
+tvm_offset_t	cscope.out	/^;$/
+tvm_page_info_basic_data_t	cscope.out	/^;$/
+tvm_page_info_basic_t	cscope.out	/^;$/
+tvm_page_info_flavor_t	cscope.out	/^;$/
+tvm_page_info_t	cscope.out	/^;$/
+tvm_prot_t	cscope.out	/^;$/
+tvm_purgable_t	cscope.out	/^;$/
+tvm_purgeable_info_t	cscope.out	/^;$/
+tvm_purgeable_stat_t	cscope.out	/^;$/
+tvm_region_basic_info_64_t	cscope.out	/^;$/
+tvm_region_basic_info_data_64_t	cscope.out	/^;$/
+tvm_region_basic_info_data_t	cscope.out	/^;$/
+tvm_region_basic_info_t	cscope.out	/^;$/
+tvm_region_extended_info_data_t	cscope.out	/^;$/
+tvm_region_extended_info_t	cscope.out	/^;$/
+tvm_region_flavor_t	cscope.out	/^;$/
+tvm_region_info_64_t	cscope.out	/^;$/
+tvm_region_info_t	cscope.out	/^;$/
+tvm_region_recurse_info_64_t	cscope.out	/^;$/
+tvm_region_recurse_info_t	cscope.out	/^;$/
+tvm_region_submap_info_64_t	cscope.out	/^;$/
+tvm_region_submap_info_data_64_t	cscope.out	/^;$/
+tvm_region_submap_info_data_t	cscope.out	/^;$/
+tvm_region_submap_info_t	cscope.out	/^;$/
+tvm_region_submap_short_info_64_t	cscope.out	/^;$/
+tvm_region_submap_short_info_data_64_t	cscope.out	/^;$/
+tvm_region_top_info_data_t	cscope.out	/^;$/
+tvm_region_top_info_t	cscope.out	/^;$/
+tvm_size_t	cscope.out	/^;$/
+tvm_statistics64_data_t	cscope.out	/^;$/
+tvm_statistics64_t	cscope.out	/^;$/
+tvm_statistics_data_t	cscope.out	/^;$/
+tvm_statistics_t	cscope.out	/^;$/
+tvm_sync_t	cscope.out	/^;$/
+tvm_task_entry_t	cscope.out	/^;$/
+twchar_t	cscope.out	/^;$/
+twint_t	cscope.out	/^;$/
+tx86_avx_state32_t	cscope.out	/^;$/
+tx86_avx_state64_t	cscope.out	/^;$/
+tx86_avx_state_t	cscope.out	/^;$/
+tx86_debug_state32_t	cscope.out	/^;$/
+tx86_debug_state64_t	cscope.out	/^;$/
+tx86_debug_state_t	cscope.out	/^;$/
+tx86_exception_state32_t	cscope.out	/^;$/
+tx86_exception_state64_t	cscope.out	/^;$/
+tx86_exception_state_t	cscope.out	/^;$/
+tx86_float_state32_t	cscope.out	/^;$/
+tx86_float_state64_t	cscope.out	/^;$/
+tx86_float_state_t	cscope.out	/^;$/
+tx86_state_hdr_t	cscope.out	/^;$/
+tx86_thread_state32_t	cscope.out	/^;$/
+tx86_thread_state64_t	cscope.out	/^;$/
+tx86_thread_state_t	cscope.out	/^;$/
+tyy_state_type	cscope.out	/^;$/
+tyytype_int16	cscope.out	/^;$/
+tyytype_int8	cscope.out	/^;$/
+tyytype_uint16	cscope.out	/^;$/
+tyytype_uint8	cscope.out	/^;$/
+u__sigaction_u	cscope.out	/^269 union $/
+unput	lex.yy.c	/^#define unput(c) yyunput( c, (yytext_ptr)  )$/
+unsigned	cscope.out	/^ *, unsigned);$/
+usigval	cscope.out	/^158 union $/
+uwait	cscope.out	/^194 union $/
 writeToPR	prf.c	/^void writeToPR(PolymorphicRegister *pR, int data, /
+yy_buffer_state	lex.yy.c	/^struct yy_buffer_state$/
+yy_delete_buffer	lex.yy.c	/^    void yy_delete_buffer (YY_BUFFER_STATE  b )$/
+yy_fatal_error	lex.yy.c	/^static void yy_fatal_error (yyconst char* msg )$/
+yy_flex_strlen	lex.yy.c	/^static int yy_flex_strlen (yyconst char * s )$/
+yy_flex_strncpy	lex.yy.c	/^static void yy_flex_strncpy (char* s1, yyconst cha/
+yy_flush_buffer	lex.yy.c	/^    void yy_flush_buffer (YY_BUFFER_STATE  b )$/
+yy_get_next_buffer	lex.yy.c	/^static int yy_get_next_buffer (void)$/
+yy_get_previous_state	lex.yy.c	/^    static yy_state_type yy_get_previous_state (vo/
+yy_init_globals	lex.yy.c	/^static int yy_init_globals (void)$/
+yy_reduce_print	parser.tab.c	/^yy_reduce_print (yyvsp, yyrule)$/
+yy_scan_string	lex.yy.c	/^YY_BUFFER_STATE yy_scan_string (yyconst char * yys/
+yy_set_bol	lex.yy.c	/^#define yy_set_bol(at_bol) \\$/
+yy_set_interactive	lex.yy.c	/^#define yy_set_interactive(is_interactive) \\$/
+yy_size_t	lex.yy.c	/^typedef size_t yy_size_t;$/
+yy_stack_print	parser.tab.c	/^yy_stack_print (bottom, top)$/
+yy_state_type	lex.yy.c	/^typedef int yy_state_type;$/
+yy_symbol_print	parser.tab.c	/^yy_symbol_print (yyoutput, yytype, yyvaluep)$/
+yy_symbol_value_print	parser.tab.c	/^yy_symbol_value_print (yyoutput, yytype, yyvaluep)/
+yy_trans_info	lex.yy.c	/^struct yy_trans_info$/
+yyalloc	lex.yy.c	/^void *yyalloc (yy_size_t  size )$/
+yydestruct	parser.tab.c	/^yydestruct (yymsg, yytype, yyvaluep)$/
+yyensure_buffer_stack	lex.yy.c	/^static void yyensure_buffer_stack (void)$/
+yyerror	parser.tab.c	/^int yyerror(char* msg) {$/
+yyfree	lex.yy.c	/^void yyfree (void * ptr )$/
+yyless	lex.yy.c	/^#define yyless(n) \\$/
+yymore	lex.yy.c	/^#define yymore() yymore_used_but_not_detected$/
+yyparse	parser.tab.c	/^yyparse (YYPARSE_PARAM)$/
+yypop_buffer_state	lex.yy.c	/^void yypop_buffer_state (void)$/
+yypush_buffer_state	lex.yy.c	/^void yypush_buffer_state (YY_BUFFER_STATE new_buff/
+yyset_debug	lex.yy.c	/^void yyset_debug (int  bdebug )$/
+yyset_in	lex.yy.c	/^void yyset_in (FILE *  in_str )$/
+yyset_lineno	lex.yy.c	/^void yyset_lineno (int  line_number )$/
+yyset_out	lex.yy.c	/^void yyset_out (FILE *  out_str )$/
+yystpcpy	parser.tab.c	/^yystpcpy (yydest, yysrc)$/
+yystrlen	parser.tab.c	/^yystrlen (yystr)$/
+yysyntax_error	parser.tab.c	/^yysyntax_error (char *yyresult, int yystate, int y/
+yyterminate	lex.yy.c	/^#define yyterminate() return YY_NULL$/
+yytnamerr	parser.tab.c	/^yytnamerr (char *yyres, const char *yystr)$/
+yytokentype	parser.tab.c	/^   enum yytokentype {$/
+yytype_int16	parser.tab.c	/^typedef YYTYPE_INT16 yytype_int16;$/
+yytype_int8	parser.tab.c	/^typedef YYTYPE_INT8 yytype_int8;$/
+yytype_uint16	parser.tab.c	/^typedef YYTYPE_UINT16 yytype_uint16;$/
+yytype_uint8	parser.tab.c	/^typedef YYTYPE_UINT8 yytype_uint8;$/
+yyunput	lex.yy.c	/^    static void yyunput (int c, register char * yy/
+yywrap	lex.yy.c	/^#define yywrap(n) 1$/

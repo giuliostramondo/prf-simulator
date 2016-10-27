@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "collection.h"
 
 #define ERR -1 /*!< The default error value. */
 //#define N 10   /*!< Size of one dimension of the original matrix. */
@@ -34,6 +35,7 @@ typedef struct address2d {
 	int i;
 	int j;
 }Address2d;
+
 
 //! Enum containing all the available mapping scheme
 /*! suitable for mapping input matrix logical addresses into physical Polymorphic Register addresses;
@@ -61,6 +63,11 @@ typedef enum {
 	SECONDARY_DIAG, /*!< Access elements in the secondary diagonal */
 	DEFAULT
 } acc_type;
+
+typedef struct block_access{
+	Address2d start_index;
+	acc_type type;
+}BlockAccess;
 
 //!  Data structure used for representing a Polymorphic Register.
 typedef struct polReg {
@@ -104,6 +111,7 @@ int m_h(int index_i, int index_j, scheme s, int p, int q);
 */
 int A_standard(int index_i, int index_j, int p, int q);
 
+int A_custom(PolymorphicRegister *pR,int index_i, int index_j, int alpha, int beta, acc_type type);
 //! Allocates memory required for a Polymorphic Register and returns a pointer to it 
 /*!
 	\param p size of the PRF on its first dimension.
@@ -157,6 +165,7 @@ int** parallelReadFromPR(PolymorphicRegister *pR, int z);
 */
 int** readBlock(PolymorphicRegister *pR, int index_i, int index_j, acc_type type);
 
+int** readBlockCustom(PolymorphicRegister *pR, int index_i, int index_j, acc_type type);
 //! Computes the conflict matrix relative to a block read on the PolymorphicRegister.
 /*!
 	\param pR Pointer to the Polymorphic Register.
@@ -178,4 +187,8 @@ int** computeConflicts(PolymorphicRegister *pR, int index_i, int index_j, acc_ty
 	\return list of the 2D addresses of the block read.
 */
 Address2d* AGU(int index_i, int index_j,int p, int q, acc_type type);
+
+int compareAddress(void *a, void *b);
+
+t_list* parallelAccessCoverage(PolymorphicRegister *pR, t_list *parallel_accesses);
 #endif
