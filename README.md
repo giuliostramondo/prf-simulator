@@ -1,4 +1,4 @@
-Description                         {#mainpage}
+Description
 ============
 
 The Polymorphic Register File (PRF) are memory modules designed in order to allow fast parallel access to matrices in high performance applications. Through the use of mapping functions ( m_v(int,int,scheme,int,int), m_h(int,int,scheme,int,int), A_standard(int,int,int,int)} ) an N-Dimensional matrix is stored in an N+1-Dimensional structure enabling, for certain type of matrix accesses, a faster retrival of the data. The PRF are implemented using an array of independent memory modules that can be read and written in parallel. There are multiple ways in which the data can be organized, those will be referred to as *Access Schemes*. Each Access Scheme allows to read the data stored in the PRF - in a conflict free manner - with different shapes, called *Access Types*. Assuming that the PRF is bidimensional and that is implemented using p*q independent memory modules organized in a pxq matrix, all the possible parallel access type supported by a PRF are the following: 
@@ -48,7 +48,7 @@ This produces an executable called prf\_console in the ./bin folder.
 Usage
 ======
 
-Usage: ./prf [Options]
+Usage: ./prf_console  [Options]
 
 
 -N \<num\>	 Change the horizontal size of the input matrix (default 9)
