@@ -25,7 +25,7 @@ Rect\&Trect                | Allows rectangular and transposed rectangular confl
 This simulator was written to allow a easier visualization of the effect of each access scheme and to provide a platform for the exploration of the access schemes.
 
 The simulator is implemented following the description given in
-[On implementability of Polymorphic Register Files] (http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6322873&tag=1).
+[On implementability of Polymorphic Register Files](http://ieeexplore.ieee.org/document/6322873/).
 
 See the rest of the [documentation](http://giuliostramondo.github.io/prf-simulator/doc/html/).
 
