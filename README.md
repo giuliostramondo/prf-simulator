@@ -27,6 +27,8 @@ This simulator was written to allow a easier visualization of the effect of each
 The simulator is implemented following the description given in
 ["On implementability of Polymorphic Register Files"]: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6322873&tag=1 "On implementability of Polymorphic Register Files"
 
+See the rest of the [documentation](http://giuliostramondo.github.io/prf-simulator/doc/html/)
+
 Installation
 ============
 The sources for the program are available on git ( once obtained the permission from the owner of the repository ). 
